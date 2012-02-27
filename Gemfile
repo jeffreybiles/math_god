@@ -6,7 +6,6 @@ gem 'rails', '3.2.0'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 gem 'multi_json', '1.0.4'
-gem 'nokogiri'
 gem 'execjs'
 gem 'therubyracer'
 gem 'json'
@@ -18,7 +17,7 @@ gem 'simple_form'
 gem 'nested_form', git: 'https://github.com/ryanb/nested_form.git'
 gem 'carrierwave'
 gem 'fog'
-gem 'taps'
+#gem 'taps'
 gem 'css3-progress-bar-rails'
 gem 'make_resourceful'
 gem 'twitter-bootstrap-rails'
@@ -28,6 +27,7 @@ group :production do
 end
 
 group :development, :test do
+  gem 'nokogiri'
   gem 'sqlite3'
 end
 # Gems used only for assets and not required
