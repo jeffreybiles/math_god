@@ -24,10 +24,11 @@ gem 'twitter-bootstrap-rails'
 
 group :production do
   gem 'pg'
+  gem 'nokogiri'
 end
 
 group :development, :test do
-  gem 'nokogiri'
+  #gem 'nokogiri'
   gem 'sqlite3'
 end
 # Gems used only for assets and not required
