@@ -16,7 +16,7 @@ gem 'cancan'
 gem 'simple_form'
 gem 'nested_form', git: 'https://github.com/ryanb/nested_form.git'
 gem 'carrierwave'
-gem 'fog'
+#gem 'fog'
 #gem 'taps'
 gem 'css3-progress-bar-rails'
 gem 'make_resourceful'
@@ -25,7 +25,7 @@ gem 'twitter-bootstrap-rails'
 
 group :production do
   gem 'pg'
-  gem 'nokogiri'
+  #gem 'nokogiri'
   gem 'thin'
 end
 
