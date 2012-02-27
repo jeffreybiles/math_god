@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  god_id: 1
+  level: 1
+  exp_to_level: 9.99
+
+two:
+  user_id: 1
+  god_id: 1
+  level: 1
+  exp_to_level: 9.99

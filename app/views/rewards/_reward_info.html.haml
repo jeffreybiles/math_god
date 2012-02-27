@@ -1,0 +1,7 @@
+.title= link_to reward.name, quality_path(reward.quality_id)
+= link_to (image_tag link_fu reward.image), quality_path(reward.quality_id)
+%br
+= reward.number_increased
+
+= link_to 'Edit', edit_reward_path(reward)
+= link_to 'Delete', reward, :confirm => 'Are you sure?', :method => :delete

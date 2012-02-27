@@ -1,0 +1,8 @@
+= simple_form_for @my_quality do |f|
+  = render 'layouts/errors', object: @my_quality
+  .field= f.input :quality_id, collection: Quality.all
+  .field= f.hidden_field :user_id, value: current_user.id
+  .field= f.input :level
+  -#.field= f.input :exp_to_level
+  -#.field= f.input :exp_to_delevel
+  .actions= f.submit 'Save'

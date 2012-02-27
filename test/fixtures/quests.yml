@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  level: 1
+  god: 1
+  title: MyString
+  intro_text: MyString
+  success_text: MyString
+  failure_text: MyString
+
+two:
+  level: 1
+  god: 1
+  title: MyString
+  intro_text: MyString
+  success_text: MyString
+  failure_text: MyString

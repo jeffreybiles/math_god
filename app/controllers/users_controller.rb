@@ -1,0 +1,52 @@
+class UsersController < ApplicationController
+  load_and_authorize_resource
+
+  make_resourceful do
+    actions :edit, :destroy, :index, :show
+  end
+
+  def new
+    current_user_session.destroy if current_user_session
+
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(params[:user])
+
+    @user.player= true
+
+     if @user.save
+        @storylet = Storylet.find_by_title('Zeroth storylet')
+        PlayerLog.create(user: @user, storylet_id: @storylet.id)
+        update_permissions(params)
+        @user.offer_code= ''
+        @user.save
+        render 'storylets/success'
+      else
+        render action: "new"
+      end
+  end
+
+  def update
+    @user = User.find(params[:id])
+
+    update_permissions(params)
+    @user.update_attributes(params[:user])
+    @user.offer_code= ''
+    @user.save
+
+    redirect_to @user
+  end
+
+  def update_permissions(params)
+    if params[:offer_code]
+      if params[:user][:offer_code] ==  ENV['admin_password']
+        @user.admin= true
+      elsif params[:user][:offer_code] == ENV['contributor_password']
+        @user.contributor= true
+      end
+    end
+  end
+
+end

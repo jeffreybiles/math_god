@@ -1,0 +1,6 @@
+%h4 Requirement
+.field
+  = f.input :quality_id, collection: Quality.all
+  = f.input :min_level
+  = f.input :max_level
+.field= f.link_to_remove "Oops, this isn't required after all."

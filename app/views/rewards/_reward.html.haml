@@ -1,0 +1,12 @@
+-if reward.on_success && reward.on_fail
+  .brown.rew
+    = render 'rewards/reward_info', reward: reward
+-elsif reward.on_success
+  .green.rew
+    = render 'rewards/reward_info', reward: reward
+-elsif reward.on_fail
+  .red.rew
+    = render 'rewards/reward_info', reward: reward
+-else
+  = render 'rewards/reward_info', reward: reward
+

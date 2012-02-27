@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Quality:
+  = @my_quality.quality.name if @my_quality.quality
+%p
+  %b User:
+  = @my_quality.user.name
+%p
+  %b Level:
+  = @my_quality.level
+%p
+  %b Exp to level
+  = @my_quality.exp_to_level
+
+%p
+  %b Exp to delevel
+  = @my_quality.exp_to_delevel
+
+%p
+  %b Expires at
+  = @my_quality.expiration_time
+= 2.seconds.ago > (@my_quality.expiration_time || 1.second.ago)
+
+= link_to 'Edit', edit_my_quality_path(@my_quality)
+\|
+= link_to 'Back', my_qualities_path

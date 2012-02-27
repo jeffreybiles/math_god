@@ -1,0 +1,24 @@
+%h1 Welcome!
+
+The gods are curious yet fickle.  They must have some way to keep track of you.  You'll be obliging, won't you?
+
+%p
+= render 'form'
+-#
+-#.field
+-#  = f.label 'The name that others called you: '
+-#  = f.text_field :name
+-#.field
+-#  = f.label 'The place where you receive email:'
+-#  = f.text_field :email
+-#.field
+-#  = f.label 'The secret code that protects your account: '
+-#  = f.password_field :password
+-#That last thing you say:  it comes out as gibberish, like you are speaking in tongues.  Are you going crazy?
+-#.field
+-#  = f.label 'Perhaps it is best to try again.  Make sure to say the exact same secret code as last time: '
+-#  = f.password_field :password_confirmation
+-#= f.hidden_field :current_universe_id, value: 2
+-#You're not crazy.  Hopefully.
+-#.actions
+-#  = f.submit "That's my name.  That's my email.  That's my password.  I'm sure of it."

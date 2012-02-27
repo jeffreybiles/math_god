@@ -1,0 +1,32 @@
+#sidebar
+  -if current_user && (current_user.player? || current_user.admin?)
+    Hello,
+    = current_user.name
+    %br
+    = link_to 'Account', user_path(current_user)
+    %br
+    = link_to "Sign out", '/signout'
+    %br
+
+    Energy:
+    = current_user.energy
+    = '/'
+    = max_energy
+    %br
+      -#bugsbugsbugs  But on the right track, king of.  copious use of .from_now and .ago should help readability
+    -if current_user.last_energy_tick && minutes_since_last_tick <= time_between_ticks
+      = pluralize((-1)*minutes_since_last_tick + time_between_ticks + 1, 'minute')
+      till your next energy
+    -elsif current_user.last_energy_tick
+      = owed_energy
+      more energy when play your next storylet.
+    %br
+    Favor:
+    = current_user.favor
+  -else
+    %h2 welcome!
+    .button
+      =link_to "New Adventure", new_user_path
+    %br
+    .button
+      =link_to "Sign in", new_user_session_path

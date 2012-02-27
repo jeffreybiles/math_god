@@ -1,0 +1,10 @@
+-if previous && link.previous
+  .title= link_to link.previous.title, storylet_path(link.previous_id)
+  = link_to (image_tag link_fu link.previous.preview_image_id), storylet_path(link.previous_id)
+-else
+  .title= link_to link.next.title, storylet_path(link.next_id)
+  = link_to (image_tag link_fu link.next.preview_image_id), storylet_path(link.next_id)
+%br
+= link_to 'Edit', edit_link_path(link)
+\|
+= link_to 'Destroy', link, :confirm => 'Are you sure?', :method => :delete

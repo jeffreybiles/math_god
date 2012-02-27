@@ -1,0 +1,28 @@
+%h1 Listing qualities
+
+= link_to 'New Quality', new_quality_path
+
+%table
+  %tr
+    %th Name
+    %th Description
+    %th Storylet
+    %th Type
+    %th Image?
+    %th
+    %th
+    %th
+
+  - @qualities.each do |quality|
+    %tr
+      %td= quality.name
+      %td= quality.description[0, 20] + "..."
+      %td= quality.storylet.title if quality.storylet
+      %td= quality.quality_type
+      %td= if quality.image then "yes" else "no" end
+      %td= link_to 'Show', quality
+      %td= link_to 'Edit', edit_quality_path(quality)
+      %td= link_to 'Destroy', quality, :confirm => 'Are you sure?', :method => :delete
+
+%br
+

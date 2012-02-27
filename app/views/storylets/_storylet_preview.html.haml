@@ -1,0 +1,10 @@
+-if requirements(storylet.id)[1]
+
+-elsif requirements(storylet.id)[0] == ''
+  %a(href="/storylets/#{storylet.id}/action")
+    .storylet
+      = render 'preview_contents', storylet: storylet, open: true
+
+-else
+  .storylet.unavailable
+    = render 'preview_contents', storylet: storylet, open: false

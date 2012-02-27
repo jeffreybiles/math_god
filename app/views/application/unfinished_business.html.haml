@@ -1,0 +1,53 @@
+%h1 Unfinished Business
+
+%h3 'Images' without images
+
+%table
+  %tr
+    %th Number
+    %th Item
+  - n = 0
+  - @images.each do |image|
+    %tr
+      %th= n = n + 1
+      %th= link_to image.name, edit_image_path(image.id)
+      
+%h3 Qualities need pictures
+%table
+  %tr
+    %th Number
+    %th Item
+  - n = 0
+  - @qualities_without_pictures.each do |quality|
+    %tr
+      %th= n = n + 1
+      %th= link_to quality.name, edit_quality_path(quality.id) if quality
+
+
+%h3 Storylets need pictures
+
+%table
+  %tr
+    %th Number
+    %th Item
+  - n = 0
+  - @storylets_without_pictures.each do |storylet|
+    %tr
+      %th= n = n + 1
+      %th= link_to storylet.title, edit_storylet_path(storylet.id) if storylet
+
+%h3 Storylets have notes
+
+%table
+  %tr
+    %th Number
+    %th Item
+    %th Note
+  - n = 0
+  - @storylets_with_notes.each do |storylet|
+    %tr
+      %th= n = n + 1
+      %th= link_to storylet.title, storylet_path(storylet.id) if storylet
+      %th= storylet.notes[0, 200]
+
+

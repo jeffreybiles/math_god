@@ -1,0 +1,17 @@
+= simple_form_for @link do |f|
+  = render 'layouts/errors', object: @link
+
+  .field
+    =f.label 'Previous storylet'
+    =f.text_field :previous_title, data: {autocomplete_source: Storylet.order(:title).map(&:title)}
+  -#.field= f.input :previous_id, collection: Storylet.all
+  .field
+    =f.label 'Next storylet'
+    =f.text_field :next_title, data: {autocomplete_source: Storylet.order(:title).map(&:title)}
+  -#.field= f.input :next_id, collection: Storylet.all
+  .field
+    = f.check_box :on_success, checked: true
+    = f.label :on_success
+  .field= f.input :on_failure
+  .field= f.input :extra_text
+  .actions= f.submit 'Save'

@@ -1,0 +1,15 @@
+= simple_form_for @requirement do |f|
+  = render 'layouts/errors', object: @requirement
+
+  .field
+    -#= f.input :storylet_id, collection: Storylet.all
+    = f.label :storylet_title
+    = f.text_field :storylet_title, data: {autocomplete_source: Storylet.order(:title).map(&:title)}
+
+  .field
+    -#= f.input :quality_id, collection: Quality.all
+    = f.label :quality_name
+    = f.text_field :quality_name, data: {autocomplete_source: Quality.order(:name).map(&:name)}
+  .field= f.input :min_level
+  .field= f.input :max_level
+  .actions= f.submit 'Save'

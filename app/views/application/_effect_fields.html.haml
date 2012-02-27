@@ -1,0 +1,7 @@
+New Effect
+.field= f.input :quality_id, collection: Quality.all
+.field= f.input :default_exp
+.field
+  = f.label 'number increased/new stage/challenge level'
+  = f.number_field :number_increased
+= f.link_to_remove "Oops, never mind"

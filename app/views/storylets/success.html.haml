@@ -1,0 +1,15 @@
+.success
+  .text
+    = @storylet.success_text
+    %br
+  = image_tag link_fu @storylet.success_image
+  - @storylet.rewards.each do |reward|
+    -if reward.on_success
+      = render 'rewards/just_awarded', reward: reward
+  %br
+%p
+%p
+%h2 Your choices...
+- @storylet.links.each do |link|
+  -if link.on_success
+    =render 'storylets/storylet_preview', storylet: link.next

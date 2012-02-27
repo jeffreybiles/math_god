@@ -1,0 +1,7 @@
+= f.hidden_field :exp_to_level, value: challenge[1]
+#challenge_text.unit= f.label challenge[0]
+#challenge_answer.unit= f.text_field :exp_to_delevel, value: 0
+-#Holy god, this is a hack
+-#Still:  exp_to_level is the correct answer, and exp_to_delevel is the given answer
+-#Reason behind hack:  my_quality will be a highly used database item, and I don't want to clutter it up with MORE decimals.
+-#Besides, these values aren't even saved.

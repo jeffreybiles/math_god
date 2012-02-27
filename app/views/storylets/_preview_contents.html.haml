@@ -1,0 +1,11 @@
+.title= storylet.title
+= image_tag link_fu storylet.preview_image
+-if open
+  .text= storylet.subtitle
+-else
+  .text= requirements(storylet.id)[0]
+-if storylet.has_challenge
+  .level
+    = storylet.god.name
+    lvl
+    = storylet.challenge_level

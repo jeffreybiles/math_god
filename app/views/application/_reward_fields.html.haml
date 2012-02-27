@@ -1,0 +1,13 @@
+%h4 Reward
+.field
+  = f.input :quality_id, collection: Quality.all
+  = f.input :number_increased
+  = f.hidden_field :storylet_id
+.field
+  .boolean_field
+    =f.check_box :on_success, checked: true
+    =f.label :on_success
+  .boolean_field= f.input :on_fail
+.field
+
+=f.link_to_remove 'Get rid of this reward'

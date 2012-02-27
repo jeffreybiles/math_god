@@ -1,0 +1,42 @@
+= simple_nested_form_for @storylet do |f|
+  =render 'layouts/errors', object: @storylet
+
+  .field
+    = f.input :title
+    = f.input :subtitle
+    = f.label :preview_image_name
+    .picture_field= f.text_field :preview_image_name, data: {autocomplete_source: Image.order(:name).map(&:name)}
+  .field
+    = f.link_to_add "+ requirement", :requirements
+    = f.link_to_add "+ previous storylet", :previous_links
+  .field
+    .boolean_field
+      = f.label :has_challenge
+      = f.check_box :has_challenge
+    = f.input :god_id, collection: Quality.where(quality_type: 'god')
+    = f.input :challenge_level
+  .field
+    = f.input :main_text
+    = f.label :action_image_name
+    .picture_field= f.text_field :action_image_name, data: {autocomplete_source: Image.order(:name).map(&:name)}
+  .field
+    =f.input :success_text
+    = f.label :success_image_name
+    .picture_field= f.text_field :success_image_name, data: {autocomplete_source: Image.order(:name).map(&:name)}
+  .field
+    = f.input :failure_text
+    = f.label :failure_image_name
+    .picture_field= f.text_field :failure_image_name, data: {autocomplete_source: Image.order(:name).map(&:name)}
+  .field
+    = f.link_to_add "+ reward", :rewards
+    = f.link_to_add "+ next storylet", :links
+  .actions= f.submit 'Save'
+  .field
+    = f.input :notes
+
+- @storylet.requirements.each do |requirement|
+  =render 'requirements/requirement', requirement: requirement
+- @storylet.rewards.each do |reward|
+  =render 'rewards/reward', reward: reward
+%br
+

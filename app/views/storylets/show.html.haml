@@ -1,0 +1,59 @@
+%p#notice= notice
+
+= link_to 'Edit', edit_storylet_path(@storylet)
+\|
+= link_to 'Back', storylets_path
+
+-if @storylet.notes && @storylet.notes != ''
+  .reward
+    %b Notes:
+    = @storylet.notes
+
+.links
+  %h3 Previous storylets
+  = render @storylet.previous_links, previous: true
+
+.links
+  %h3 Next storylets
+  = render @storylet.links, previous: false
+
+.links
+  %h3 Requirements
+  = render @storylet.requirements
+
+%h3 This Storylet
+%p
+  %b Title:
+  = @storylet.title
+%p
+  %b Subtitle:
+  = @storylet.subtitle
+  = image_link @storylet.preview_image, 'small'
+
+-if @storylet.has_challenge
+  %p
+    %b Main text:
+    = @storylet.main_text
+    = image_link @storylet.action_image, 'small'
+%p
+  %b Success text:
+  = @storylet.success_text
+  = image_link @storylet.success_image, 'small'
+- if @storylet.has_challenge
+  %p
+    %b Failure text:
+    = @storylet.failure_text
+    = image_link @storylet.failure_image, 'small'
+-if @storylet.has_challenge
+  %p
+    Has challenge of level
+    = @storylet.challenge_level
+    with
+    = @storylet.god.name
+%h3 Rewards
+=render @storylet.rewards
+
+
+%br
+
+

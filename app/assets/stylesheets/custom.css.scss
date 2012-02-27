@@ -1,0 +1,256 @@
+$total-width: 900px;
+$sidebar-width: 120px;
+$content-width: $total-width - $sidebar-width - 20px;
+
+@mixin rounded($radius: 0.5em) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+ul.ui-autocomplete {
+  position: absolute;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: solid 1px #999;
+  cursor: default;
+  li {
+    background-color: #FFF;
+    border-top: solid 1px #DDD;
+    margin: 0;
+    padding: 0;
+    a {
+      color: #000;
+      display: block;
+      padding: 3px;
+    }
+    a.ui-state-hover, a.ui-state-active {
+      background-color: #FFFCB2;
+    }
+  }
+}
+
+#container {
+  width: $total-width;
+  margin: auto;
+}
+
+body {background-color: #cff;}
+
+#content {
+  width: $content-width;
+  background: #fff;
+  @include rounded();
+  float: right;
+  margin: auto;
+}
+
+header {
+  padding: 1em;
+  width: 200px;
+  padding-top: 20px;
+  background: #fff;
+  @include rounded();
+}
+
+nav {
+  float: right;      
+  padding: 0 0.7em;
+  white-space: nowrap;
+  background-color: white;
+  @include rounded();
+
+  ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style-type: none;
+      display: inline-block;
+      padding: 0.2em 0;
+
+      a {
+        padding: 0 5px;
+        font-weight: bold;
+      }
+
+      a:visited {color: #09c;}
+
+      a:hover {text-decoration: underline;}
+    }
+  }
+}
+
+.big {
+  font-size: 130%;
+}
+
+.small {
+  font-size: 70%;
+}
+
+.links {
+ clear: both;
+}
+
+.rew, .link {
+  float: left;
+  color: black;
+  @include rounded;
+  min-height: 170px;
+  width: 100px;
+  margin: 2px;
+
+  a{
+    color: black;
+  }
+  
+  .title {
+    min-height: 48px;
+    text-align: center;
+  }
+
+  img {
+    float: left;
+    clear: both;
+  }
+}
+
+.success, .failure, .storylet, .storylets, .quality, .requirement, .requirements, .reward, .rewards {
+  width: $content-width - 40px;
+  /*clear: both;*/
+
+  float: left;
+  padding: 10px;
+  color: black;
+  @include rounded;
+  min-height: 120px;
+  height: auto;
+
+  border: 2px black solid;
+
+  position:relative;
+
+  .title {
+    float: left;
+    font-size: 150%;
+    max-width: $content-width/2 - 170px;
+  }
+
+  .text {
+    font-size: 120%;
+    float: left;
+    /*min-height: 100px;*/
+    max-width: $content-width/2 - 170px;
+    clear: left;
+  }
+
+  img {
+    float: right;
+    padding: 8px;
+  }
+
+  .level {
+    padding-left: 8px;
+    padding-bottom: 3px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+textarea {
+  width: 400px;
+  height: 200px;
+}
+
+.field {
+  clear: left;
+  .input, .picture_field, .boolean_field, .unit {
+    margin: 0 10px 0 10px;
+    float: left;
+  }
+}
+
+#challenge_text {
+  padding-top: 4px;
+}
+
+.red {
+  background-color: brown;
+}
+
+.brown {
+  background-color: #b8860b;
+}
+
+.reward {
+  min-height: 20px;
+  clear: both;
+  width: $content-width - 65px;
+  background-color: #fff799;
+
+  img {
+    padding: 3px;
+  }
+  .exp_bar {
+    width: $content-width - 120px;
+    padding-top: 8px;
+  }
+}
+
+.success {
+  background-color: #77c777;
+  margin: auto;
+}
+
+.failure {
+  background-color: #ffb999;
+}
+
+.storylet {
+  width: $content-width/2 - 50px;
+  margin: 10px;
+  clear: none;
+}
+
+.storylet.unavailable {
+  border-color: #f08080;
+  background-color: grey;
+}
+
+.button {
+  background-color: #d3d3d3;
+  border: 1px solid #000;
+  text-align: center;
+  margin: auto;
+  /*width: 240px;*/
+  padding: 10px 0 10px 0;
+  @include rounded;
+
+  font-style: normal;
+  font-size: 150%;
+  color: black;
+}
+
+a {
+  text-decoration: none;
+}
+
+#sidebar {
+  position: fixed;
+  top: 10px;
+  float: left;
+  width: $sidebar-width;
+  border: 3px black solid;
+  height: 600px;
+  background-color: black;
+  color: white;
+  @include rounded();
+}
+
+#holy_plant {
+  height: 200px;
+  background-color: green;
+}

@@ -1,0 +1,17 @@
+= simple_nested_form_for @quality do |f|
+  = render 'layouts/errors', object: @quality
+
+  .field
+    = f.input :name
+    = f.input :quality_type, collection: %w[event item god faction currency status cooldown]
+  .field
+    = f.input :description
+    =f.label 'Image'
+    .picture_field=f.text_field :image_name, data: {autocomplete_source: Image.order(:name).map(&:name)}
+  .field
+    -#=f.label 'Storylet (optional)'
+    -#=f.text_field :storylet_title, data: {autocomplete_source: Storylet.order(:title).map(&:title)}
+    = f.label 'Time limit in minutes (optional)'
+    = f.number_field :time_limit
+  .field= f.link_to_add "+ effect", :effects
+  .actions= f.submit 'Save'

@@ -1,0 +1,16 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @player_log.name
+%p
+  %b Storylet:
+  = @player_log.title
+
+%p
+  %b Time done:
+  = @player_log.created_at
+
+= link_to 'Edit', edit_player_log_path(@player_log)
+\|
+= link_to 'Back', player_logs_path

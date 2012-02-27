@@ -1,0 +1,13 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @image.name
+
+%p
+  = image_tag @image.picture_url if @image.picture_url
+  = image_tag @image.small_picture_url if @image.small_picture_url
+
+= link_to 'Edit', edit_image_path(@image)
+\|
+= link_to 'Back', images_path

@@ -1,0 +1,17 @@
+= simple_form_for @reward do |f|
+  = render 'layouts/errors', object: @reward
+
+  .field
+    = f.label :storylet_title
+    = f.text_field :storylet_title, data: {autocomplete_source: Storylet.order(:title).map(&:title)}
+
+  .field
+    = f.label :quality_name
+    = f.text_field :quality_name, data: {autocomplete_source: Quality.order(:name).map(&:name)}
+  .field= f.input :on_success
+  .field= f.input :on_fail
+  .field= f.input :default_exp
+  .field
+    = f.label 'number increased/new stage/challenge level'
+    = f.number_field :number_increased
+  .actions= f.submit 'Save'

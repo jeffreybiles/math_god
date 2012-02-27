@@ -1,0 +1,25 @@
+%h1 Listing universes
+
+%table
+  %tr
+    %th Name
+    %th Focus
+    -#%th God
+    %th Description
+    %th
+    %th
+    %th
+
+  - @universes.each do |universe|
+    %tr
+      %td= universe.name
+      %td= universe.focus
+      -#%td= universe.god.name
+      %td= universe.description
+      %td= link_to 'Show', universe
+      %td= link_to 'Edit', edit_universe_path(universe)
+      %td= link_to 'Destroy', universe, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Universe', new_universe_path

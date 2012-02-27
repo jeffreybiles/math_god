@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @quality.name
+%p
+  %b Description:
+  = @quality.description
+%p
+  %b Storylet:
+  = @quality.storylet.title if @quality.storylet
+%p
+  %b Type:
+  = @quality.quality_type
+
+%p
+  %b Time Limit in minutes:
+  = @quality.time_limit
+
+=image_tag link_fu @quality.image
+
+= link_to 'Edit', edit_quality_path(@quality)
+\|
+= link_to 'Back', qualities_path

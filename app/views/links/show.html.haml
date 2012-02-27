@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Previous:
+  = @link.previous.title
+%p
+  %b Next:
+  = @link.next.title
+%p
+  %b On success:
+  = @link.on_success
+%p
+  %b On failure:
+  = @link.on_failure
+%p
+  %b Extra text:
+  = @link.extra_text
+
+= link_to 'Edit', edit_link_path(@link)
+\|
+= link_to 'Back', links_path

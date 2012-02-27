@@ -1,0 +1,27 @@
+%h1 Listing my_qualities
+
+%table
+  %tr
+    %th Quality
+    %th User
+    %th Level
+    %th Exp to level
+    %th Exp to delevel
+    %th                                         o
+    %th
+    %th
+
+  - @my_qualities.each do |my_quality|
+    %tr
+      %td= link_to my_quality.quality.name, quality_path(my_quality.quality_id)
+      %td= link_to my_quality.user.name, user_path(my_quality.user_id)
+      %td= my_quality.level
+      %td= my_quality.exp_to_level
+      %td= my_quality.exp_to_delevel
+      %td= link_to 'Show', my_quality
+      %td= link_to 'Edit', edit_my_quality_path(my_quality)
+      %td= link_to 'Destroy', my_quality, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New My quality', new_my_quality_path

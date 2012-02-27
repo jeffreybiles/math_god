@@ -1,0 +1,11 @@
+- if link.on_success && link.on_failure then
+  .brown.link
+    =render 'links/link_contents',  link: link, previous: previous
+- elsif link.on_success
+  .green.link
+    = render 'links/link_contents', link: link, previous: previous
+-elsif link.on_failure
+  .red.link
+    = render 'links/link_contents', link: link, previous: previous
+-else
+  =link_to "Fix this link please", edit_link_path(link.id)

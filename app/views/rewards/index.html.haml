@@ -1,0 +1,29 @@
+%h1 Listing rewards
+
+%table
+  %tr
+    %th Storylet
+    %th Quality
+    %th On success
+    %th On fail
+    %th Default exp
+    %th Number
+    %th
+    %th
+    %th
+
+  - @rewards.each do |reward|
+    %tr
+      %td= link_to reward.storylet.title, storylet_path(reward.storylet_id) if reward.storylet
+      %td= link_to reward.quality.name, quality_path(reward.quality_id)
+      %td= reward.on_success
+      %td= reward.on_fail
+      %td= reward.default_exp
+      %td= reward.number_increased
+      %td= link_to 'Show', reward
+      %td= link_to 'Edit', edit_reward_path(reward)
+      %td= link_to 'Destroy', reward, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Reward', new_reward_path

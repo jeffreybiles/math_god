@@ -1,0 +1,28 @@
+%h1 Listing links
+
+= link_to 'New Link', new_link_path
+
+%table
+  %tr
+    %th Previous
+    %th Next
+    %th On success
+    %th On failure
+    %th Extra text
+    %th
+    %th
+    %th
+
+  - @links.each do |link|
+    %tr
+      %td= link_to link.previous.title, storylet_path(link.previous_id) if link.previous
+      %td= link_to link.next.title, storylet_path(link.next_id) if link.next
+      %td= link.on_success
+      %td= link.on_failure
+      %td= link.extra_text
+      %td= link_to 'Show', link
+      %td= link_to 'Edit', edit_link_path(link)
+      %td= link_to 'Destroy', link, :confirm => 'Are you sure?', :method => :delete
+
+%br
+

@@ -1,0 +1,13 @@
+Sign yo self in!
+
+= form_for @user_session do |f|
+  .field
+    = f.label :email
+    %br
+    = f.text_field :email
+  .field
+    = f.label :password
+    %br
+    = f.password_field :password
+  .actions
+    = f.submit

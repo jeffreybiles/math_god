@@ -1,0 +1,32 @@
+%h1 Listing storylets
+
+= link_to 'New Storylet', new_storylet_path
+
+%table
+  %tr
+    %th Title
+    %th Success text
+    %th God
+    %th Level
+    %th Next
+    %th Prev.
+    %th images?
+    %th
+    %th
+    %th
+
+  - @storylets.each do |storylet|
+    %tr
+      %td= link_to storylet.title, storylet
+      %td= storylet.success_text[0, 15]
+      %td= storylet.god.name[0,5] if storylet.god
+      %td= storylet.challenge_level
+      %td= storylet.next_storylets.count
+      %td= storylet.previous_storylets.count
+      %td= if storylet.preview_image and storylet.success_image then "yes" else "no" end
+      %td= link_to 'Show', storylet
+      %td= link_to 'Edit', edit_storylet_path(storylet)
+      %td= link_to 'Destroy', storylet, :confirm => 'Are you sure?', :method => :delete
+
+%br
+

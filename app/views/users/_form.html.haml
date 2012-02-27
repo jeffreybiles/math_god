@@ -1,0 +1,18 @@
+= simple_form_for @user do |f|
+  =render 'layouts/errors', object: @user
+
+  .field
+    = f.input :name
+  .field
+    = f.input :email
+  .field
+    = f.input :password
+  .field
+    = f.input :password_confirmation
+  .field
+    = f.input :offer_code
+  .field
+    = f.input :energy if current_user && current_user.admin?
+    = f.input :last_energy_tick if current_user && current_user.admin?
+  .actions
+    = f.submit "Start my adventure!"

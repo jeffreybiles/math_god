@@ -1,0 +1,23 @@
+%h1 Listing player_logs
+
+= link_to 'New Player log', new_player_log_path
+
+%table
+  %tr
+    %th User
+    %th Storylet
+    %th Time
+    %th Success?
+    %th
+    %th
+
+  - @player_logs.each do |player_log|
+    %tr
+      %td= link_to player_log.name, user_path(player_log.user_id)
+      %td= link_to player_log.title, storylet_path(player_log.storylet_id) if player_log.storylet
+      %td= player_log.created_at
+      %td= player_log.success
+      %td= link_to 'Show', player_log
+      %td= link_to 'Destroy', player_log, :confirm => 'Are you sure?', :method => :delete if can? :destroy, player_log
+
+%br

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+%html
+  %head
+    %title TestStuff
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    #container
+      = render 'layouts/sidebar'
+      -if current_user && (current_user.admin? || current_user.contributor?)
+        = render 'layouts/contributor_toolbar'
+      #content
+        = yield
+

@@ -1,0 +1,25 @@
+%h1 Listing requirements
+
+%table
+  %tr
+    %th Storylet
+    %th Quality
+    %th Min level
+    %th Max level
+    %th
+    %th
+    %th
+
+  - @requirements.each do |requirement|
+    %tr
+      %td= link_to requirement.storylet.title, storylet_path(requirement.storylet_id)
+      %td= link_to requirement.quality.name, quality_path(requirement.quality_id)
+      %td= requirement.min_level
+      %td= requirement.max_level
+      %td= link_to 'Show', requirement
+      %td= link_to 'Edit', edit_requirement_path(requirement)
+      %td= link_to 'Destroy', requirement, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Requirement', new_requirement_path

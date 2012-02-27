@@ -1,0 +1,15 @@
+= form_for @image do |f|
+  =render 'layouts/errors', object: @image
+
+  .field
+    = f.label :picture
+    = f.file_field :picture
+  .field
+    = f.label :small_picture
+    = f.file_field :small_picture
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field= f.hidden_field :creator_id, value: current_user.id
+  .actions
+    = f.submit 'Save'
