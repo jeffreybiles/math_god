@@ -22,9 +22,11 @@ gem 'css3-progress-bar-rails'
 gem 'make_resourceful'
 gem 'twitter-bootstrap-rails'
 
+
 group :production do
   gem 'pg'
   gem 'nokogiri'
+  gem 'thin'
 end
 
 group :development, :test do
