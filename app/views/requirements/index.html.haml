@@ -13,7 +13,7 @@
   - @requirements.each do |requirement|
     %tr
       %td= link_to requirement.storylet.title, storylet_path(requirement.storylet_id)
-      %td= link_to requirement.quality.name, quality_path(requirement.quality_id)
+      %td= link_to requirement.quality.name, quality_path(requirement.quality_id) if requirement.quality
       %td= requirement.min_level
       %td= requirement.max_level
       %td= link_to 'Show', requirement

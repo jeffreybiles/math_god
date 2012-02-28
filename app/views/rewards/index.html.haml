@@ -14,7 +14,7 @@
   - @rewards.each do |reward|
     %tr
       %td= link_to reward.storylet.title, storylet_path(reward.storylet_id) if reward.storylet
-      %td= link_to reward.quality.name, quality_path(reward.quality_id)
+      %td= link_to reward.quality.name, quality_path(reward.quality_id) if reward.quality
       %td= reward.on_success
       %td= reward.on_fail
       %td= reward.number_increased

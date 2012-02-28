@@ -1,30 +1,30 @@
 .reward
-  - if reward.quality_type == 'item' || reward.quality_type == 'currency' || reward.quality_type == 'status'
-    You gained
-    - if reward.number_increased > 0 then "gained" else "lost" end
-    = reward.number_increased
-    of
-    = reward.name
-    = image_tag link_fu reward.image, 'small'
-    - if reward.quality_type == 'status'
-      -# how to make it show number out of 50, and how to make it different when losing
-      .exp_bar= combo_progress_bar(status_progress_and_gained(reward), rounded: true, tiny: true)
-  - elsif reward.quality_type == 'event'
-    You are now at stage
-    = reward.number_increased
-    of
-    = reward.name
-    = image_tag link_fu reward.image, 'small'
-  - elsif reward.quality_type == 'cooldown'
-    You have a cooldown of
-    = reward.quality.time_limit
-    minutes.
-  - else
-    You gained
-    = experience_earned(reward)
-    experience with
-    = reward.name
-    = image_tag link_fu reward.image, 'small'
-    -#.exp_bar= combo_progress_bar(percent_completed_and_gained(reward), rounded: true, tiny: true)
+  -case reward.quality_type
+    -when 'item', 'currency', 'status'
+      You gained
+      - if reward.number_increased > 0 then "gained" else "lost" end
+      = reward.number_increased
+      of
+      = reward.name
+      = image_tag link_fu reward.image, 'small'
+      - if reward.quality_type == 'status'
+        .exp_bar= combo_progress_bar(status_progress_and_gained(reward), rounded: true, tiny: true)
+    -when 'event'
+      You are now at stage
+      = reward.number_increased
+      of
+      = reward.name
+      = image_tag link_fu reward.image, 'small'
+    -when 'cooldown'
+      You have a cooldown of
+      = reward.quality.time_limit
+      minutes.
+    - else
+      You gained
+      = experience_earned(reward)
+      experience with
+      = reward.name
+      = image_tag link_fu reward.image, 'small'
+      .exp_bar= combo_progress_bar(percent_completed_and_gained(reward), rounded: true, tiny: true)
 
 %br

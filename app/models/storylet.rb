@@ -14,10 +14,10 @@ class Storylet < ActiveRecord::Base
   belongs_to :failure_image, class_name: 'Image'
   belongs_to :god, class_name: 'Quality'
 
-  has_many :requirements
+  has_many :requirements, dependent: :destroy
   accepts_nested_attributes_for :requirements, allow_destroy: true
 
-  has_many :rewards
+  has_many :rewards, dependent: :destroy
   accepts_nested_attributes_for :rewards
 
   has_many :player_logs

@@ -8,6 +8,7 @@
     %th Success text
     %th God
     %th Level
+    %th Cooloff time
     %th Next
     %th Prev.
     %th images?
@@ -21,6 +22,7 @@
       %td= storylet.success_text[0, 15]
       %td= storylet.god.name[0,5] if storylet.god
       %td= storylet.challenge_level
+      %td= storylet.cooloff_time
       %td= storylet.next_storylets.count
       %td= storylet.previous_storylets.count
       %td= if storylet.preview_image and storylet.success_image then "yes" else "no" end

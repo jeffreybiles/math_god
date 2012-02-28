@@ -10,6 +10,12 @@
 %p
   %b Time done:
   = @player_log.created_at
+  %br
+
+%p
+  This action was taken
+  = ((1.second.ago - @player_log.created_at)/60).round(1)
+  minutes ago.
 
 = link_to 'Edit', edit_player_log_path(@player_log)
 \|

@@ -4,8 +4,8 @@ class Quality < ActiveRecord::Base
   has_many :my_qualities, dependent: :destroy
   has_many :users, through: :my_qualities
 
-  has_many :requirements
-  has_many :rewards
+  has_many :requirements, dependent: :destroy
+  has_many :rewards, dependent: :destroy
 
   has_many :effects, class_name: 'Reward'
   accepts_nested_attributes_for :effects
