@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   has_many :my_qualities, dependent: :destroy
   has_many :qualities, through: :my_qualities
-  has_many :player_logs
+  has_many :player_logs, dependent: :destroy
   has_many :creations, foreign_key: 'creator_id', as: :creator
 
   belongs_to :image
