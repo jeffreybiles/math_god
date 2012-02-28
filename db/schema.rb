@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120226201030) do
+ActiveRecord::Schema.define(:version => 20120228024820) do
 
   create_table "images", :force => true do |t|
     t.string    "name"
@@ -33,15 +33,15 @@ ActiveRecord::Schema.define(:version => 20120226201030) do
   end
 
   create_table "my_qualities", :force => true do |t|
-    t.integer   "quality_id"
-    t.integer   "user_id"
-    t.integer   "level"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.decimal   "exp_to_delevel"
-    t.decimal   "exp_to_level"
-    t.integer   "current_storylet_id"
-    t.timestamp "expiration_time"
+    t.integer  "quality_id"
+    t.integer  "user_id"
+    t.integer  "level",               :default => 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.decimal  "exp_to_delevel",      :default => 0.0
+    t.decimal  "exp_to_level",        :default => 40.0
+    t.integer  "current_storylet_id"
+    t.datetime "expiration_time"
   end
 
   create_table "player_logs", :force => true do |t|
@@ -73,14 +73,13 @@ ActiveRecord::Schema.define(:version => 20120226201030) do
   end
 
   create_table "rewards", :force => true do |t|
-    t.integer   "storylet_id"
-    t.integer   "quality_id"
-    t.boolean   "on_success"
-    t.boolean   "on_fail"
-    t.boolean   "default_exp"
-    t.integer   "number_increased"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.integer  "storylet_id"
+    t.integer  "quality_id"
+    t.boolean  "on_success"
+    t.boolean  "on_fail"
+    t.integer  "number_increased"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "storylets", :force => true do |t|
@@ -116,32 +115,32 @@ ActiveRecord::Schema.define(:version => 20120226201030) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                              :null => false
-    t.string   "persistence_token",                  :null => false
-    t.string   "crypted_password"
-    t.string   "password_salt"
-    t.string   "single_access_token"
-    t.string   "perishable_token"
-    t.integer  "login_count",         :default => 0
-    t.integer  "failed_login_count",  :default => 0
-    t.datetime "last_request_at"
-    t.datetime "current_login_at"
-    t.datetime "last_login_at"
-    t.string   "current_login_ip"
-    t.string   "last_login_ip"
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "admin"
-    t.boolean  "contributor"
-    t.boolean  "player"
-    t.integer  "image_id"
-    t.integer  "current_universe_id"
-    t.string   "offer_code"
-    t.integer  "current_storylet_id"
-    t.integer  "energy"
-    t.integer  "favor"
-    t.datetime "last_energy_tick"
+    t.string    "email",                              :null => false
+    t.string    "persistence_token",                  :null => false
+    t.string    "crypted_password"
+    t.string    "password_salt"
+    t.string    "single_access_token"
+    t.string    "perishable_token"
+    t.integer   "login_count",         :default => 0
+    t.integer   "failed_login_count",  :default => 0
+    t.timestamp "last_request_at"
+    t.timestamp "current_login_at"
+    t.timestamp "last_login_at"
+    t.string    "current_login_ip"
+    t.string    "last_login_ip"
+    t.string    "name"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.boolean   "admin"
+    t.boolean   "contributor"
+    t.boolean   "player"
+    t.integer   "image_id"
+    t.integer   "current_universe_id"
+    t.string    "offer_code"
+    t.integer   "current_storylet_id"
+    t.integer   "energy"
+    t.integer   "favor"
+    t.timestamp "last_energy_tick"
   end
 
 end

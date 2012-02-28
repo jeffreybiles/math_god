@@ -61,15 +61,6 @@ class ApplicationController < ActionController::Base
     now = 1.second.ago
     last_tick = current_user.last_energy_tick
     ((now - last_tick)/60).round(0)
-    #minutes = now.strftime("%M").to_i - last_tick.strftime("%M").to_i
-    #hours = now.strftime("%H").to_i - last_tick.strftime("%H").to_i
-    #
-    #
-    #minutes += hours*60
-    #if minutes < -60
-    #  minutes = 60*24 - minutes
-    #end
-    #minutes
   end
 
   def log_code
@@ -103,25 +94,6 @@ class ApplicationController < ActionController::Base
     current_user.my_qualities.find_or_create_by_quality_id(id)
   end
 
-  #
-  #def quality_requirements(option)
-  #  requirements = ""
-  #  option.requirements.each do |requirement|
-  #    if requirement.max_level == 0
-  #      if get_my_quality(requirement.quality_id)
-  #        return requirements << "You already have the quality #{requirement.quality.name}"
-  #      end
-  #    elsif get_my_quality(requirement.quality_id).nil? ||
-  #        requirement.min_level > (get_my_quality(requirement.quality_id).level || 0)
-  #      requirements << "You must be level #{requirement.min_level} with the quality #{requirement.quality.name}"
-  #    elsif requirement.max_level &&
-  #        requirement.max_level < get_my_quality(requirement.quality).level
-  #      requirements << "You have too much of the quality #{requirement.qaulity.name}."
-  #    end
-  #  end
-  #  requirements
-  #end
-
   def quality_requirements(storylet)
     requirements = ""
     blocked = false
@@ -153,11 +125,12 @@ class ApplicationController < ActionController::Base
     if last_time_played
       time_since_played = 1.second.ago - last_time_played.created_at
       if time_since_played < storylet.cooloff_time
-        "You must wait" +
+        return "You must wait" +
             pluralize((storylet.cooloff_time - time_since_played).round(0), "more minute") +
             "to play this storylet again."
       end
     end
+    ""
   end
 
   def link_fu(link, size ='medium')

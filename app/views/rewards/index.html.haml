@@ -6,7 +6,6 @@
     %th Quality
     %th On success
     %th On fail
-    %th Default exp
     %th Number
     %th
     %th
@@ -18,7 +17,6 @@
       %td= link_to reward.quality.name, quality_path(reward.quality_id)
       %td= reward.on_success
       %td= reward.on_fail
-      %td= reward.default_exp
       %td= reward.number_increased
       %td= link_to 'Show', reward
       %td= link_to 'Edit', edit_reward_path(reward)
