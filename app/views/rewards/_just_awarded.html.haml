@@ -21,13 +21,10 @@
     minutes.
   - else
     You gained
-    - if reward.default_exp
-      = experience_earned(reward)
-    - else
-      = reward.number_increased
+    = experience_earned(reward)
     experience with
     = reward.name
     = image_tag link_fu reward.image, 'small'
-    .exp_bar= combo_progress_bar(percent_completed_and_gained(reward), rounded: true, tiny: true)
+    -#.exp_bar= combo_progress_bar(percent_completed_and_gained(reward), rounded: true, tiny: true)
 
 %br

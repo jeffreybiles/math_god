@@ -53,7 +53,7 @@ class ApplicationController < ActionController::Base
   end
 
   def experience_earned(reward)
-    my_quality = get_my_quality(reward.quality_id)
+    my_quality = get_or_create_my_quality(reward.quality_id)
     my_quality.experience_earned(reward.number_increased, reward).round(1)
   end
 
@@ -85,8 +85,8 @@ class ApplicationController < ActionController::Base
   end
 
   def requirements(id, type='storylet')
-    option = Storylet.find(id)
-    quality_requirements(option)
+    storylet = Storylet.find(id)
+    quality_requirements(storylet)
   end
 
   def get_my_quality(id)
@@ -122,18 +122,18 @@ class ApplicationController < ActionController::Base
   #  requirements
   #end
 
-  def quality_requirements(option)
+  def quality_requirements(storylet)
     requirements = ""
     blocked = false
-    option.requirements.each do |requirement|
+    storylet.requirements.each do |requirement|
       quality = get_my_quality(requirement.quality_id)
       if quality
         if requirement.max_level == 0
           requirements << "You have the quality #{requirement.name}"
           blocked = true if requirement.quality_type != 'cooldown'
-        elsif requirement.min_level && requirement.min_level > quality.level
+        elsif !quality.level or (requirement.min_level && requirement.min_level > quality.level)
           requirements << "You must have #{requirement.name} #{requirement.min_level} or more."
-          blocked = true if requirement.min_level > quality.level + 5
+          blocked = true if requirement.min_level > (quality.level || 1) + 5
         elsif requirement.max_level && requirement.max_level < quality.level
           requirements << "You are must have less than #{requirement.name} #{requirement.max_level}."
           blocked = true if requirement.max_level < quality.level - 1
@@ -144,7 +144,20 @@ class ApplicationController < ActionController::Base
         blocked = true if requirement.min_level > 3
       end
     end
+    requirements << check_cooloff_time(storylet) if storylet.cooloff_time
     [requirements, blocked]
+  end
+
+  def check_cooloff_time(storylet)
+    last_time_played = current_user.player_logs.find_by_storylet_id(storylet)
+    if last_time_played
+      time_since_played = 1.second.ago - last_time_played.created_at
+      if time_since_played < storylet.cooloff_time
+        "You must wait" +
+            pluralize((storylet.cooloff_time - time_since_played).round(0), "more minute") +
+            "to play this storylet again."
+      end
+    end
   end
 
   def link_fu(link, size ='medium')

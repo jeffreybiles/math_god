@@ -160,6 +160,12 @@ nav {
   }
 }
 
+.success, .failure {
+  .text, .title {
+    max-width: $content-width - 200px;
+  }
+}
+
 textarea {
   width: 400px;
   height: 200px;
