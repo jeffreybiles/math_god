@@ -13,7 +13,6 @@
     = '/'
     = max_energy
     %br
-      -#bugsbugsbugs  But on the right track, king of.  copious use of .from_now and .ago should help readability
     -if current_user.last_energy_tick && minutes_since_last_tick <= time_between_ticks
       = pluralize((-1)*minutes_since_last_tick + time_between_ticks + 1, 'minute')
       till your next energy
@@ -22,7 +21,7 @@
       more energy when you play your next storylet.
     %br
     Favor:
-    = current_user.favor
+    = favor.level if favor
   -else
     %h2 welcome!
     .button

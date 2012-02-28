@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
                 :log_code, :percent_complete, :experience_earned,
                 :percent_completed_and_gained, :minutes_since_last_tick,
                 :max_energy, :time_between_ticks, :status_progress_and_gained,
-                :owed_energy
+                :owed_energy, :favor
 
   def percent_complete(quality_id)
     my_quality = get_my_quality(quality_id)
@@ -160,6 +160,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def favor
+    this_quality = Quality.find_by_name('favor')
+    this_quality.my_qualities.find_or_create_by_user_id(current_user.id)
+  end
 
   def current_user
     @current_user ||= current_user_session && current_user_session.user

@@ -16,7 +16,7 @@
   - @qualities.each do |quality|
     %tr
       %td= quality.name
-      %td= quality.description[0, 20] + "..."
+      %td= quality.description[0, 20] + "..." if quality.description
       %td= quality.storylet.title if quality.storylet
       %td= quality.quality_type
       %td= if quality.image then "yes" else "no" end
