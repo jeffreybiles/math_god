@@ -30,6 +30,10 @@
   = @storylet.subtitle
   = image_link @storylet.preview_image, 'small'
 
+-if @storylet.cooloff_time
+  %b Cooloff time:
+  .big= @storylet.cooloff_time
+
 -if @storylet.has_challenge
   %p
     %b Main text:
