@@ -4,8 +4,9 @@
   %tr
     %th Name
     %th Email
-    %th Currency
-    %th Location
+    %th Energy
+    %th Favor
+    %th Last energy tick
     %th Universe
     %th
     %th
@@ -15,8 +16,9 @@
     %tr
       %td= user.name
       %td= user.email
-      %td= user.currency || 0
-      %td= link_to user.location.name, user.location if user.location
+      %td= user.energy if user.energy
+      %td= user.favor if user.favor
+      %td= user.last_energy_tick if user.last_energy_tick
       %td= link_to user.universe.name, user.universe if user.universe
       %td= link_to 'Show', user
       %td= link_to 'Edit', edit_user_path(user) if can? :update, user
