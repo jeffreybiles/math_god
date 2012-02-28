@@ -2,10 +2,10 @@
 
 %p
   %b User:
-  = @player_log.name
+  = @player_log.name if @player_log.user
 %p
   %b Storylet:
-  = @player_log.title
+  = @player_log.title if @player_log.storylet
 
 %p
   %b Time done:
