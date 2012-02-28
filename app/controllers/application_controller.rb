@@ -1,6 +1,15 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  def help
+    Helper.instance
+  end
+
+  class Helper
+    include Singleton
+    include ActionView::Helpers::TextHelper
+  end
+
   helper_method :current_user_session, :current_user, :link_fu,
                 :requirements, :get_my_quality, :get_or_create_my_quality,
                 :log_code, :percent_complete, :experience_earned,
@@ -121,13 +130,13 @@ class ApplicationController < ActionController::Base
   end
 
   def check_cooloff_time(storylet)
-    last_time_played = current_user.player_logs.find_by_storylet_id(storylet)
+    last_time_played = current_user.player_logs.find_all_by_storylet_id(storylet.id).last
     if last_time_played
-      time_since_played = 1.second.ago - last_time_played.created_at
+      time_since_played = (1.second.ago - last_time_played.created_at)/60
       if time_since_played < storylet.cooloff_time
-        return "You must wait" +
-            pluralize((storylet.cooloff_time - time_since_played).round(0), "more minute") +
-            "to play this storylet again."
+        return "You must wait
+            #{help.pluralize((storylet.cooloff_time - time_since_played).round(0), "more minute")}
+            to play this storylet again."
       end
     end
     ""
@@ -156,132 +165,10 @@ class ApplicationController < ActionController::Base
     @current_user ||= current_user_session && current_user_session.user
   end
 
-  #def my_item(id)
-  #  item = current_user.owned_items.find_by_item_id(id)
-  #  if item.nil?
-  #    item = OwnedItem.new(user_id: current_user.id, item_id: id, number_owned: 0)
-  #    item.save
-  #  end
-  #  item
-  #end
-  #
-  #def my_blessing(id, id_of_what = 'god')
-  #  blessing = current_user.blessings.find_by_god_id(id)
-  #  #why does this cause an error but the others don't?'
-  #  #if blessing.nil?
-  #  #  blessing = Blessing.new(user_id: current_user.id, god_id: id, level: 1, exp_to_level: 40)
-  #  #  blessing.save
-  #  #end
-  #  blessing
-  #end
-  #
-  #def my_reputation(id)
-  #  reputation = current_user.reputations.find_by_faction_id(id)
-  #  if reputation.nil?
-  #    reputation = Reputation.new(user_id: current_user.id, faction_id: id, level: 1,
-  #                                exp_to_level: 40, exp_to_delevel: 0)
-  #    reputation.save
-  #  end
-  #  reputation
-  #end
-  #
-  #def my_event(id)
-  #  event = current_user.happenings.find_by_event_id(id)
-  #  unless event
-  #    event = Happening.new(user_id: current_user.id, event_id: id, stage: 1)
-  #    event.save
-  #  end
-  #  event
-  #end
-
-
   protected
 
     def current_user_session
       @current_user_session ||= UserSession.find
     end
 
-
-    #def money_requirements(option)
-    #  requirements = ""
-    #  if option.currency_required && option.currency_required > current_user.currency
-    #    requirements << "#{option.currency_required} favor required."
-    #  end
-    #  requirements
-    #end
-    #
-    #def reputation_requirements(option)
-    #  requirements = ""
-    #  option.reputation_requirements.each do |requirement|
-    #    if requirement.max_reputation == 0
-    #      if my_reputation(requirement.faction_id)
-    #        return requirements << "You are too close to #{requirement.faction.name}"
-    #      end
-    #    elsif my_reputation(requirement.faction_id).nil? ||
-    #        requirement.level_required > my_reputation(requirement.faction_id).level
-    #      requirements << "You must be level #{requirement.level_required} with #{requirement.faction.name}"
-    #    elsif requirement.max_reputation &&
-    #        requirement.max_reputation < my_reputation(requirement.faction_id).level
-    #      requirements << "You are too favored by #{requirement.faction.name}.  This will do you no good."
-    #    end
-    #  end
-    #  requirements
-    #end
-    #
-    #def blessing_requirements(option)
-    #  requirements = ""
-    #  option.blessing_requirements.each do |requirement|
-    #    if requirement.max_blessing == 0
-    #      if my_blessing(requirement.god_id)
-    #        return requirements << "You are too favored by #{requirement.god.name}"
-    #      end
-    #    elsif my_blessing(requirement.god_id).nil? ||
-    #        requirement.level_required > my_blessing(requirement.god_id).level
-    #      requirements << "You must be level #{requirement.level_required} with #{requirement.god.name}"
-    #    elsif requirement.max_blessing &&
-    #        requirement.max_blessing < my_blessing(requirement.god_id).level
-    #      requirements << "You are too favored by #{requirement.god.name}.  This will do you no good."
-    #    end
-    #  end
-    #  if my_blessing(option.god_id).nil? || option.level > my_blessing(option.god_id).level + 2
-    #    requirements << "You must be level #{option.level} with #{option.god.name}"
-    #  end
-    #  requirements
-    #end
-    #
-    #def item_requirements(option)
-    #  requirements = ""
-    #  option.item_requirements.each do |requirement|
-    #    if requirement.max_items == 0
-    #      if my_item(requirement.item_id)
-    #        return requirements << "You own too many #{requirement.item.name}"
-    #      end
-    #    elsif my_item(requirement.item_id).nil? ||
-    #        requirement.number_required > my_item(requirement.item_id).number_owned
-    #      requirements << "You must own #{ActionController::Base.helpers.pluralize(requirement.number_required, requirement.item.name)}"
-    #    elsif requirement.max_items &&
-    #        requirement.max_items < my_item(requirement.item_id).number_owned
-    #      requirements << "You own too many #{requirement.item.name}."
-    #    end
-    #  end
-    #  requirements
-    #end
-    #
-    #def event_requirements(option)
-    #  requirements = ""
-    #  option.event_requirements.each do |requirement|
-    #    if requirement.max_stage == 0
-    #      if my_event(requirement.event_id)
-    #        return requirements << "You are too far in #{requirement.event.name}"
-    #      end
-    #    elsif my_event(requirement.event_id).nil? ||
-    #        requirement.stage_required > my_event(requirement.event_id).stage
-    #      requirements << "You must progress farther in #{requirement.event.name}."
-    #    elsif requirement.max_stage &&
-    #        requirement.max_stage < my_event(requirement.event_id).stage
-    #      requirements << "You are too far in #{requirement.event.name}.  The time for this has passed."
-    #    end
-    #  end
-    #  requirements
-    #end
 end
