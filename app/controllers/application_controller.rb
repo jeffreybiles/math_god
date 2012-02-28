@@ -135,7 +135,7 @@ class ApplicationController < ActionController::Base
       time_since_played = (1.second.ago - last_time_played.created_at)/60
       if time_since_played < storylet.cooloff_time
         return "You must wait
-            #{help.pluralize((storylet.cooloff_time - time_since_played).round(0), "more minute")}
+            #{help.pluralize((storylet.cooloff_time - time_since_played).ceil, "more minute")}
             to play this storylet again."
       end
     end

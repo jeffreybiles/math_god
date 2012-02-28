@@ -22,7 +22,8 @@ class StoryletsController < ApplicationController
 
   def per_turn_actions
     current_user.energy = (current_user.energy || max_energy) - 1
-    current_user.favor = (current_user.favor || 0) + 1
+    amount = if @storylet.has_challenge? then 2 else 1 end
+    current_user.favor = (current_user.favor || 0) + amount
     current_user.save
   end
 
