@@ -7,6 +7,15 @@ class MyQualitiesController < ApplicationController
     actions :index, :show, :edit, :new, :create, :destroy
   end
 
+  def show_mine
+    if params[:id]
+      @user = User.find(params[:id])
+    else
+      @user = current_user
+    end
+    @my_qualities = MyQuality.find_all_by_user_id(@user.id)
+  end
+
   def update
     @my_quality = MyQuality.find(params[:id])
 

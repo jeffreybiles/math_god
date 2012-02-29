@@ -22,7 +22,7 @@ class StoryletsController < ApplicationController
 
   def per_turn_actions
     current_user.energy = (current_user.energy || max_energy) - 1
-    amount_added = if @storylet.has_challenge? then 2 else 1 end
+    amount_added = if @storylet.has_challenge? then @storylet.challenge_level else 1 end
     new_amount = favor.level + amount_added
     favor.update_attribute(:level, new_amount)
     favor.save

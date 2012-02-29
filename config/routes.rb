@@ -7,6 +7,8 @@ TestStuff::Application.routes.draw do
   match "/current_player_logs/:id", to: 'player_logs#current_player_logs'
 
   resources :my_qualities
+  match "/show_my_qualities", to: 'my_qualities#show_mine'
+  match "/show_my_qualities/:id", to: 'my_qualities#show_mine'
 
   resources :rewards
 

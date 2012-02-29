@@ -48,6 +48,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def status_progress(my_quality)
+    max_level = 50
+    current_amount = my_quality.level
+    current_amount/max_level
+  end
+
   def percent_completed_and_gained(reward)
     my_quality = get_my_quality(reward.quality_id)
     exp_for_level = my_quality.exp_to_delevel + my_quality.exp_to_level
