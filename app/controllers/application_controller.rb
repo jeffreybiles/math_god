@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
                 :log_code, :percent_complete, :experience_earned,
                 :percent_completed_and_gained, :minutes_since_last_tick,
                 :max_energy, :time_between_ticks, :status_progress_and_gained,
-                :owed_energy, :favor
+                :owed_energy, :favor, :last_log, :last_log_status, :last_few_logs
 
   def percent_complete(quality_id)
     my_quality = get_my_quality(quality_id)
@@ -24,6 +24,10 @@ class ApplicationController < ActionController::Base
 
   def time_between_ticks
     3
+  end
+
+  def last_few_logs
+    current_user.player_logs.order('created_at DESC').limit(7)
   end
 
   def owed_energy

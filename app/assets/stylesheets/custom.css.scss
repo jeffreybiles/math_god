@@ -124,6 +124,27 @@ nav {
   text-align: center;
 }
 
+.storylet_log_preview {
+  width: $sidebar-width - 10px;
+  clear: both;
+  padding: 3px;
+  margin: 1px;
+  border: 1px white solid;
+  @include rounded;
+  overflow: auto;
+
+  .text {
+    float: left;
+    font-size: 80%;
+    word-wrap: break-word;
+    width: $sidebar-width - 60px;
+  }
+
+  img{
+    float: right;
+  }
+}
+
 .my_quality {
   border: black 2px solid;
   height: 220px;

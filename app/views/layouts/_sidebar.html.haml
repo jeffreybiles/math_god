@@ -1,9 +1,7 @@
 #sidebar
   -if current_user && (current_user.player? || current_user.admin?)
     Hello,
-    = current_user.name
-    %br
-    = link_to 'Account', user_path(current_user)
+    = link_to current_user.name, user_path(current_user)
     %br
     = link_to "Sign out", '/signout'
     %br
@@ -24,6 +22,13 @@
     = favor.level if favor
     %br
     = link_to "My stats", '/show_my_qualities'
+    %br
+    = link_to "Play!", "/storylets/#{last_log.storylet_id}/#{last_log_status}/#{log_code}" if last_log.storylet_id
+    %br
+    Previous storylets:
+    - last_few_logs.each do |log|
+      = render 'player_logs/previous_storylet_preview', storylet: log.storylet
+
   -else
     %h2 welcome!
     .button
