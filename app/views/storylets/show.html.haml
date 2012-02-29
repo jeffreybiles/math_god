@@ -37,16 +37,16 @@
 -if @storylet.has_challenge
   %p
     %b Main text:
-    = @storylet.main_text
+    = render 'storylets/split_text', text: @storylet.main_text
     = image_link @storylet.action_image, 'small'
 %p
   %b Success text:
-  = @storylet.success_text
+  = render 'storylets/split_text', text: @storylet.success_text
   = image_link @storylet.success_image, 'small'
 - if @storylet.has_challenge
   %p
     %b Failure text:
-    = @storylet.failure_text
+    = render 'storylets/split_text', text: @storylet.failure_text
     = image_link @storylet.failure_image, 'small'
 -if @storylet.has_challenge
   %p

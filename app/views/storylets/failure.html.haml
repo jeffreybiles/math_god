@@ -1,6 +1,6 @@
 .failure
   .text
-    = @storylet.failure_text
+    =render 'storylets/split_text', text: @storylet.failure_text
     %br
   = image_tag link_fu @storylet.failure_image
   - @storylet.rewards.each do |reward|

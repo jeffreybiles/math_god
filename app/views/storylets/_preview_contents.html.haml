@@ -3,7 +3,7 @@
 -if open
   .text= storylet.subtitle
 -else
-  .text= requirements(storylet.id)[0]
+  .text= render 'storylets/split_text', text: requirements(storylet.id)[0]
 -if storylet.has_challenge
   .level
     = storylet.god.name

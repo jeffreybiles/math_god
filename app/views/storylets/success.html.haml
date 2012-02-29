@@ -1,6 +1,6 @@
 .success
   .text
-    = @storylet.success_text
+    = render 'storylets/split_text', text: @storylet.success_text
     %br
   = image_tag link_fu @storylet.success_image
   - @storylet.rewards.each do |reward|

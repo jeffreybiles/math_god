@@ -1,5 +1,5 @@
 .action
-  = @storylet.main_text
+  =render 'storylets/split_text', text: @storylet.main_text
   = image_tag link_fu @storylet.action_image
 
   -if @storylet.has_challenge
