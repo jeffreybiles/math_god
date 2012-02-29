@@ -54,34 +54,6 @@ header {
   @include rounded();
 }
 
-nav {
-  float: right;      
-  padding: 0 0.7em;
-  white-space: nowrap;
-  background-color: white;
-  @include rounded();
-
-  ul {
-    margin: 0;
-    padding: 0;
-
-    li {
-      list-style-type: none;
-      display: inline-block;
-      padding: 0.2em 0;
-
-      a {
-        padding: 0 5px;
-        font-weight: bold;
-      }
-
-      a:visited {color: #09c;}
-
-      a:hover {text-decoration: underline;}
-    }
-  }
-}
-
 .big {
   font-size: 130%;
 }
@@ -95,7 +67,7 @@ nav {
 }
 
 .links {
- clear: both;
+  clear: both;
 }
 .rew, .link, .my_quality {
   float: left;
@@ -108,7 +80,7 @@ nav {
   a{
     color: black;
   }
-  
+
   .title {
     min-height: 48px;
     text-align: center;
@@ -163,7 +135,6 @@ nav {
 
 .success, .failure, .storylet, .storylets, .action, .quality, .requirement, .requirements, .reward, .rewards {
   width: $content-width - 40px;
-  /*clear: both;*/
 
   float: left;
   padding: 10px;
@@ -185,7 +156,6 @@ nav {
   .text {
     font-size: 120%;
     float: left;
-    /*min-height: 100px;*/
     max-width: $content-width/2 - 170px;
     clear: left;
   }
@@ -238,14 +208,24 @@ textarea {
 .reward {
   min-height: 20px;
   clear: both;
-  width: $content-width - 65px;
+  width: $content-width - 88px;
   background-color: #fff799;
+  position: relative;
+  padding-left: 35px;
 
+  .level {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    font-size: 20px;
+  }
   img {
     padding: 3px;
   }
   .exp_bar {
-    width: $content-width - 120px;
+    position: absolute;
+    left: 35px;
+    width: $content-width - 140px;
     padding-top: 8px;
   }
 }
@@ -267,8 +247,8 @@ textarea {
 
 .storylet.unavailable {
   border-color: #f08080;
-  background-color: grey;   
-  
+  background-color: grey;
+
   p {
     margin: 0;
     padding-top: 4px;
@@ -280,7 +260,6 @@ textarea {
   border: 1px solid #000;
   text-align: center;
   margin: auto;
-  /*width: 240px;*/
   padding: 10px 0 10px 0;
   @include rounded;
 
@@ -305,7 +284,30 @@ a {
   @include rounded();
 }
 
-#holy_plant {
-  height: 200px;
-  background-color: green;
+nav {
+  float: right;
+  padding: 0 0.7em;
+  white-space: nowrap;
+  background-color: white;
+  @include rounded();
+
+  ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style-type: none;
+      display: inline-block;
+      padding: 0.2em 0;
+
+      a {
+        padding: 0 5px;
+        font-weight: bold;
+      }
+
+      a:visited {color: #09c;}
+
+      a:hover {text-decoration: underline;}
+    }
+  }
 }

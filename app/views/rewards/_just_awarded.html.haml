@@ -7,6 +7,7 @@
       of
       = reward.name
       = image_tag link_fu reward.image, 'small'
+      .big.level=get_my_quality(reward.quality_id).level
       - if reward.quality_type == 'status'
         .exp_bar= combo_progress_bar(status_progress_and_gained(reward), rounded: true, tiny: true)
     -when 'event'
@@ -14,6 +15,7 @@
       = reward.number_increased
       of
       = reward.name
+      .big=get_my_quality(reward.quality_id).level
       = image_tag link_fu reward.image, 'small'
     -when 'cooldown'
       You have a cooldown of
@@ -24,6 +26,7 @@
       = experience_earned(reward)
       experience with
       = reward.name
+      .level.big= get_my_quality(reward.quality_id).level
       = image_tag link_fu reward.image, 'small'
       .exp_bar= combo_progress_bar(percent_completed_and_gained(reward), rounded: true, tiny: true)
 
