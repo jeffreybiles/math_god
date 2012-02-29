@@ -1,0 +1,13 @@
+- text.split(">").each do |line|
+  - before, between= line.split("<")
+  = before
+  -if between
+    -case between.first()
+    -when 'i'
+      %i= between[2..-1]
+    -when 'b'
+      %b= between[2..-1]
+    -when 'u'
+      %u= between[2..-1]
+    -when 'r'
+      = eval(between[2..-1])

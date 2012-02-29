@@ -15,7 +15,14 @@ class ApplicationController < ActionController::Base
                 :log_code, :percent_complete, :experience_earned,
                 :percent_completed_and_gained, :minutes_since_last_tick,
                 :max_energy, :time_between_ticks, :status_progress_and_gained,
-                :owed_energy, :favor, :last_log, :last_log_status, :last_few_logs
+                :owed_energy, :favor, :last_log, :last_log_status, :last_few_logs,
+                :interpret_text
+
+  def interpret_text(text)
+     #first, make it detect <.
+    #Then, use the letters before the first space to interpret command
+    #finally, do command until closing >.
+  end
 
   def percent_complete(quality_id)
     my_quality = get_my_quality(quality_id)

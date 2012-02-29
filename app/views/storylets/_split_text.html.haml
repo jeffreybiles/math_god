@@ -1,2 +1,2 @@
 - text.split("\r\n").each do |line|
-  %p= line
+  %p= render 'storylets/interpreted_text', text: line
