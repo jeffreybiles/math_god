@@ -120,18 +120,18 @@ class ApplicationController < ActionController::Base
       quality = get_my_quality(requirement.quality_id)
       if quality
         if requirement.max_level == 0
-          requirements << "You have the quality #{requirement.name}.\n"
+          requirements << "You have the quality #{requirement.name}.\r\n"
           blocked = true if requirement.quality_type != 'cooldown'
         elsif !quality.level or (requirement.min_level && requirement.min_level > quality.level)
-          requirements << "You must have #{requirement.name} #{requirement.min_level} or more.\n"
+          requirements << "Requires #{requirement.name} #{requirement.min_level} or more.\r\n"
           blocked = true if requirement.min_level > (quality.level || 1) + 5
         elsif requirement.max_level && requirement.max_level < quality.level
-          requirements << "You are must have less than #{requirement.name} #{requirement.max_level}.\n"
+          requirements << "Requires less than #{requirement.name} #{requirement.max_level}.\r\n"
           blocked = true if requirement.max_level < quality.level - 1
         end
 
       elsif requirement.min_level
-        requirements << "You must be level #{requirement.min_level} with #{requirement.quality.name}.\n"
+        requirements << "Requires #{requirement.min_level} with #{requirement.quality.name}.\r\n"
         blocked = true if requirement.min_level > 3
       end
     end
@@ -146,7 +146,7 @@ class ApplicationController < ActionController::Base
       if time_since_played < storylet.cooloff_time
         return "You must wait
             #{help.pluralize((storylet.cooloff_time - time_since_played).ceil, "more minute")}
-            to play this storylet again.\n"
+            to play this storylet again.\r\n"
       end
     end
     ""

@@ -267,7 +267,12 @@ textarea {
 
 .storylet.unavailable {
   border-color: #f08080;
-  background-color: grey;
+  background-color: grey;   
+  
+  p {
+    margin: 0;
+    padding-top: 4px;
+  }
 }
 
 .button {
