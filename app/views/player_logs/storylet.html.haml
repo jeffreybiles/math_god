@@ -1,0 +1,24 @@
+.special_log
+  .title= @log.title
+  = image_tag link_fu @storylet.preview_image
+  = @log.created_at
+  -if @storylet.has_challenge
+    .line
+    .log_main
+      = @storylet.main_text
+      = image_tag link_fu @storylet.action_image
+    -if @log.success
+      .log_success
+        .text= @storylet.success_text
+        = image_tag link_fu @storylet.success_image
+    -else
+      .log_failure
+        .text= @storylet.failure_text
+        = image_tag link_fu @storylet.failure_image
+  -else
+    .line
+    .log_no_challenge.clear
+
+      .text= @storylet.success_text
+      =image_tag link_fu @storylet.success_image
+    .clear

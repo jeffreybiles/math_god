@@ -2,33 +2,22 @@ $total-width: 900px;
 $sidebar-width: 120px;
 $content-width: $total-width - $sidebar-width - 20px;
 
+@mixin text-half-width() {
+  width: $content-width/2 - 170px;
+  float: left;
+  @include rounded;
+}
+
+@mixin half-width() {
+  width: $content-width/2 - 50px;
+  margin: 10px;
+  float: left;
+  @include rounded;
+}
 @mixin rounded($radius: 0.5em) {
   -webkit-border-radius: $radius;
   -moz-border-radius: $radius;
   border-radius: $radius;
-}
-
-ul.ui-autocomplete {
-  position: absolute;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border: solid 1px #999;
-  cursor: default;
-  li {
-    background-color: #FFF;
-    border-top: solid 1px #DDD;
-    margin: 0;
-    padding: 0;
-    a {
-      color: #000;
-      display: block;
-      padding: 3px;
-    }
-    a.ui-state-hover, a.ui-state-active {
-      background-color: #FFFCB2;
-    }
-  }
 }
 
 #container {
@@ -69,7 +58,7 @@ header {
 .links {
   clear: both;
 }
-.rew, .link, .my_quality {
+.rew, .link, .my_quality, .special_log_preview {
   float: left;
   color: black;
   @include rounded;
@@ -90,6 +79,35 @@ header {
     float: left;
     clear: both;
   }
+}
+
+.log_no_challenge, .log_success, .log_failure, .log_main {
+  @include half-width;
+  overflow: auto;
+  .text {
+    float: left;
+  }
+
+  .title {
+    @include text-half-width;
+  }
+
+  img {
+    float: right;
+  }
+  border: orange solid 2px;
+}
+
+.log_success {
+  border-color: green;
+}
+
+.log_failure {
+  border-color: red;
+}
+
+.special_log_preview {
+  border: 2px black solid;
 }
 
 .center {
@@ -132,8 +150,13 @@ header {
     width: 100%;
   }
 }
+.line {
+  height: 0px; border: 1px solid black;
+  clear: both;
+  margin: 2px;
+}
 
-.success, .failure, .storylet, .storylets, .action, .quality, .requirement, .requirements, .reward, .rewards {
+.success, .failure, .storylet, .storylets, .action, .quality, .requirement, .requirements, .reward, .rewards, .special_log {
   width: $content-width - 40px;
 
   float: left;
@@ -148,15 +171,13 @@ header {
   position:relative;
 
   .title {
-    float: left;
+    @include text-half-width;
     font-size: 150%;
-    max-width: $content-width/2 - 170px;
   }
 
   .text {
+    @include text-half-width;
     font-size: 120%;
-    float: left;
-    max-width: $content-width/2 - 170px;
     clear: left;
   }
 
@@ -244,8 +265,7 @@ textarea {
 }
 
 .storylet {
-  width: $content-width/2 - 50px;
-  margin: 10px;
+  @include half-width;
   clear: none;
 }
 
@@ -316,6 +336,30 @@ nav {
       a:visited {color: #09c;}
 
       a:hover {text-decoration: underline;}
+    }
+  }
+}
+
+
+ul.ui-autocomplete {
+  position: absolute;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: solid 1px #999;
+  cursor: default;
+  li {
+    background-color: #FFF;
+    border-top: solid 1px #DDD;
+    margin: 0;
+    padding: 0;
+    a {
+      color: #000;
+      display: block;
+      padding: 3px;
+    }
+    a.ui-state-hover, a.ui-state-active {
+      background-color: #FFFCB2;
     }
   }
 }

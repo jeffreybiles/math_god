@@ -5,6 +5,9 @@ TestStuff::Application.routes.draw do
   resources :player_logs
   match "/current_player_logs", to: 'player_logs#current_player_logs'
   match "/current_player_logs/:id", to: 'player_logs#current_player_logs'
+  match "/special_storylets", to: 'player_logs#special_storylets'
+  match "/special_storylets/:id", to: 'player_logs#special_storylets'
+  match "/storylet_show/:id", to: 'player_logs#storylet_show'
 
   resources :my_qualities
   match "/show_my_qualities", to: 'my_qualities#show_mine'

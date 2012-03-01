@@ -4,7 +4,7 @@ class PlayerLog < ActiveRecord::Base
 
   delegate :name, to: :user
   delegate :title, to: :storylet
-
+  delegate :special, to: :storylet
   def leads_to(storylet)
     if storylet.class == "String"
       storylet = Integer(storylet)
