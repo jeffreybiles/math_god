@@ -3,13 +3,17 @@
 = link_to 'New Player log', new_player_log_path
 
 = form_for @search do |f|
-  =f.label :user_name_contains
-  =f.text_field :user_name_contains
-  =f.label :user_email_contains
-  =f.text_field :user_email_contains
-  =f.hidden_field :created_at_less_than, :include_blank => true, value: 1.second.ago
-  =f.label :storylet_title_contains
-  =f.text_field :storylet_title_contains
+  .field
+    .unit
+      =f.label :user_name_contains
+      =f.text_field :user_name_contains
+    .unit
+      =f.label :user_email_contains
+      =f.text_field :user_email_contains
+    =f.hidden_field :created_at_less_than, :include_blank => true, value: 1.second.ago
+    .unit
+      =f.label :storylet_title_contains
+      =f.text_field :storylet_title_contains
   .clear
   =f.submit "Search"
 

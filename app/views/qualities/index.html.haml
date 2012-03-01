@@ -3,12 +3,16 @@
 = link_to 'New Quality', new_quality_path
 
 = simple_form_for @search do |f|
-  =f.label :name_contains
-  =f.text_field :name_contains, default: " "
-  =f.label :quality_type_contains
-  =f.text_field :quality_type_contains, default: " "
-  =f.label :image_name_contains
-  =f.text_field :image_name_contains
+  .field
+    .unit
+      =f.label :name_contains
+      =f.text_field :name_contains, default: " "
+    .unit
+      =f.label :quality_type_contains
+      =f.text_field :quality_type_contains, default: " "
+    .unit
+      =f.label :image_name_contains
+      =f.text_field :image_name_contains
   .clear
   =f.submit "Search"
 
