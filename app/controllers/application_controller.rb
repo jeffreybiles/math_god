@@ -16,12 +16,12 @@ class ApplicationController < ActionController::Base
                 :percent_completed_and_gained, :minutes_since_last_tick,
                 :max_energy, :time_between_ticks, :status_progress_and_gained,
                 :owed_energy, :favor, :last_log, :last_log_status, :last_few_logs,
-                :interpret_text
+                :hash_to_string
 
-  def interpret_text(text)
-     #first, make it detect <.
-    #Then, use the letters before the first space to interpret command
-    #finally, do command until closing >.
+  def hash_to_string(hash)
+    string = ""
+    hash.each {|key, value| string << "#{key.strip}: #{value}," }
+    string[0..-2]
   end
 
   def percent_complete(quality_id)

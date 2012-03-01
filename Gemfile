@@ -21,7 +21,7 @@ gem 'fog'
 gem 'css3-progress-bar-rails'
 gem 'make_resourceful'
 gem 'twitter-bootstrap-rails'
-
+gem 'meta_search'
 
 group :production do
   gem 'pg'

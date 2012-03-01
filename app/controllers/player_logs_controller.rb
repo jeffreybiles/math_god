@@ -8,6 +8,11 @@ class PlayerLogsController < ApplicationController
   end
 
   make_resourceful do
-    actions :index, :show, :destroy
+    actions :show, :destroy
+  end
+
+  def index
+    @search = PlayerLog.search(params[:search])
+    @player_logs = @search.all
   end
 end

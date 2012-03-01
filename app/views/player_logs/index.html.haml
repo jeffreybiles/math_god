@@ -2,6 +2,27 @@
 
 = link_to 'New Player log', new_player_log_path
 
+= form_for @search do |f|
+  =f.label :user_name_contains
+  =f.text_field :user_name_contains
+  =f.label :user_email_contains
+  =f.text_field :user_email_contains
+  =f.hidden_field :created_at_less_than, :include_blank => true, value: 1.second.ago
+  =f.label :storylet_title_contains
+  =f.text_field :storylet_title_contains
+  .clear
+  =f.submit "Search"
+
+
+Sort by
+= sort_link @search, :user_name
+\|
+= sort_link @search, :user_email
+\|
+= sort_link @search, :created_at
+\|
+= sort_link @search, :storylet_title
+
 %table
   %tr
     %th User

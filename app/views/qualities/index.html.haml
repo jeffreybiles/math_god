@@ -2,6 +2,25 @@
 
 = link_to 'New Quality', new_quality_path
 
+= simple_form_for @search do |f|
+  =f.label :name_contains
+  =f.text_field :name_contains, default: " "
+  =f.label :quality_type_contains
+  =f.text_field :quality_type_contains, default: " "
+  =f.label :image_name_contains
+  =f.text_field :image_name_contains
+  .clear
+  =f.submit "Search"
+
+.clear
+Sort by
+= sort_link @search, :name
+\|
+= sort_link @search, :quality_type
+\|
+= sort_link @search, :image_name
+
+
 %table
   %tr
     %th Name
