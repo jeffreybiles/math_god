@@ -5,7 +5,7 @@
   = @quality.name
 %p
   %b Description:
-  = @quality.description
+  = render 'storylets/split_text', text:  @quality.description
 %p
   %b Storylet:
   = @quality.storylet.title if @quality.storylet

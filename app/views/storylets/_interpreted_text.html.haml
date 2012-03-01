@@ -9,5 +9,7 @@
       %b= between[2..-1]
     -when 'u'
       %u= between[2..-1]
+    -when 'n'
+      = current_user.name
     -when 'r'
       = eval(between[2..-1])
