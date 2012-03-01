@@ -2,15 +2,16 @@ These are the qualities of
 =@user.name
 %br
 -@my_qualities.each do |my_quality, quality = my_quality.quality|
-  .my_quality
-    -case quality.quality_type
-    -when 'god', 'faction'
-      .exp_bar= progress_bar(percent_complete(quality.id), color: 'orange')
-    -when 'status'
-      .exp_bar= progress_bar(my_quality.level * 2, color: 'pink')
-    -else
-      -#.exp_bar= progress_bar(0)
-    .title
-      = quality.name[0, 40] if quality
-    .really_big.center= my_quality.level
-    = image_tag link_fu quality.image if quality
+  -if my_quality.level > 0
+    .my_quality
+      -case quality.quality_type
+      -when 'god', 'faction'
+        .exp_bar= progress_bar(percent_complete(quality.id), color: 'orange')
+      -when 'status'
+        .exp_bar= progress_bar(my_quality.level * 2, color: 'pink')
+      -else
+        -#.exp_bar= progress_bar(0)
+      .title
+        = quality.name[0, 40] if quality
+      .really_big.center= my_quality.level
+      = image_tag link_fu quality.image if quality

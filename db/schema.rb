@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120228024820) do
+ActiveRecord::Schema.define(:version => 20120301054203) do
 
   create_table "images", :force => true do |t|
     t.string    "name"
@@ -33,15 +33,15 @@ ActiveRecord::Schema.define(:version => 20120228024820) do
   end
 
   create_table "my_qualities", :force => true do |t|
-    t.integer  "quality_id"
-    t.integer  "user_id"
-    t.integer  "level",               :default => 1
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.decimal  "exp_to_delevel",      :default => 0.0
-    t.decimal  "exp_to_level",        :default => 40.0
-    t.integer  "current_storylet_id"
-    t.datetime "expiration_time"
+    t.integer   "quality_id"
+    t.integer   "user_id"
+    t.integer   "level",               :default => 1
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.decimal   "exp_to_delevel",      :default => 0.0
+    t.decimal   "exp_to_level",        :default => 40.0
+    t.integer   "current_storylet_id"
+    t.timestamp "expiration_time"
   end
 
   create_table "player_logs", :force => true do |t|
@@ -73,13 +73,13 @@ ActiveRecord::Schema.define(:version => 20120228024820) do
   end
 
   create_table "rewards", :force => true do |t|
-    t.integer  "storylet_id"
-    t.integer  "quality_id"
-    t.boolean  "on_success"
-    t.boolean  "on_fail"
-    t.integer  "number_increased"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "storylet_id"
+    t.integer   "quality_id"
+    t.boolean   "on_success"
+    t.boolean   "on_fail"
+    t.integer   "number_increased"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "storylets", :force => true do |t|
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(:version => 20120228024820) do
     t.integer   "challenge_level"
     t.integer   "cooloff_time"
     t.text      "notes"
+    t.boolean   "special"
   end
 
   create_table "universes", :force => true do |t|

@@ -29,6 +29,8 @@
     .picture_field= f.text_field :failure_image_name, data: {autocomplete_source: Image.order(:name).map(&:name)}
   .field
     = f.input :cooloff_time
+    = f.label :special
+    = f.check_box :special
   .field
     = f.link_to_add "+ reward", :rewards
     = f.link_to_add "+ next storylet", :links

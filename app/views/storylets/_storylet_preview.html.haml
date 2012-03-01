@@ -2,8 +2,12 @@
 
 -elsif requirements(storylet.id)[0] == ''
   %a(href="/storylets/#{storylet.id}/action")
-    .storylet
-      = render 'storylets/preview_contents', storylet: storylet, open: true
+    -if storylet.special
+      .storylet.special
+        = render 'storylets/preview_contents', storylet: storylet, open: true
+    -else
+      .storylet
+        = render 'storylets/preview_contents', storylet: storylet, open: true
 
 -else
   .storylet.unavailable
