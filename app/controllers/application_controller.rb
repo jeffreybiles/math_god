@@ -134,7 +134,7 @@ class ApplicationController < ActionController::Base
           blocked = true if requirement.min_level > (quality.level || 1) + 5
         elsif requirement.max_level && requirement.max_level < quality.level
           requirements << "Requires less than #{requirement.name} #{requirement.max_level}.\r\n"
-          blocked = true if requirement.max_level < quality.level - 1
+          blocked = true if requirement.max_level < quality.level - 2  or requirement.requirement_type == 'event'
         end
 
       elsif requirement.min_level

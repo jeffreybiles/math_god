@@ -47,7 +47,7 @@
     <orderEntry type="library" scope="PROVIDED" name="hike (v1.2.1, RVM: ruby-1.9.3-p0 [mathgod]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="i18n (v0.6.0, RVM: ruby-1.9.3-p0 [mathgod]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="journey (v1.0.3, RVM: ruby-1.9.3-p0 [mathgod]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="jquery-rails (v2.0.0, RVM: ruby-1.9.3-p0 [mathgod]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="jquery-rails (v2.0.1, RVM: ruby-1.9.3-p0 [mathgod]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="json (v1.6.5, RVM: ruby-1.9.3-p0 [mathgod]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="less (v2.0.9, RVM: ruby-1.9.3-p0 [mathgod]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="less-rails (v2.1.6, RVM: ruby-1.9.3-p0 [mathgod]) [gem]" level="application" />

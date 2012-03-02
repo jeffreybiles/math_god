@@ -10,7 +10,7 @@
     -when 'u'
       %u= between[2..-1]
     -when 'n'
-      = current_user.name
+      = current_user.name.strip
     -when 'r'
       = eval(between[2..-1])
     -#-when 'R'         #how do I make it save variables between commands?
