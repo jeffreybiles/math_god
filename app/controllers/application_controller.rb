@@ -99,7 +99,7 @@ class ApplicationController < ActionController::Base
   def minutes_since_last_tick
     now = 1.second.ago
     last_tick = current_user.last_energy_tick
-    ((now - last_tick)/60).round(0)
+    ((now - last_tick)/60).round(1)
   end
 
   def log_code

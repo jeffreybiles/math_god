@@ -127,6 +127,7 @@ header {
     float: left;
     font-size: 80%;
     word-wrap: break-word;
+    line-height: 110%;
     width: $sidebar-width - 60px;
   }
 
@@ -267,6 +268,10 @@ textarea {
 .storylet {
   @include half-width;
   clear: none;
+
+  .preview_text {
+    line-height: 110%;
+  }
 }
 
 .storylet.unavailable {

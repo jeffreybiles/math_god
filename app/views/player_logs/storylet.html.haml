@@ -1,8 +1,8 @@
-.special_log
-  .title= @log.title
-  = image_tag link_fu @storylet.preview_image
-  = @log.created_at
-  -if @storylet.has_challenge
+-if @storylet.has_challenge
+  .special_log
+    .title= @log.title
+    = image_tag link_fu @storylet.preview_image
+    = @log.created_at
     .line
     .log_main
       = @storylet.main_text
@@ -15,10 +15,12 @@
       .log_failure
         .text= @storylet.failure_text
         = image_tag link_fu @storylet.failure_image
-  -else
-    .line
-    .log_no_challenge.clear
-
+-else
+  .log_no_challenge
+    .title
+      =@log.title
+      = image_tag link_fu @storylet.preview_image
+      = @log.created_at
       .text= @storylet.success_text
       =image_tag link_fu @storylet.success_image
     .clear
