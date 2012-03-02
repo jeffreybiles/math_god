@@ -196,9 +196,9 @@ header {
   }
 }
 
-.success, .failure {
+.success, .failure, .action {
   .text, .title {
-    max-width: $content-width - 200px;
+    width: $content-width - 200px;
   }
 }
 
