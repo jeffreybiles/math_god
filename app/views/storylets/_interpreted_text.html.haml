@@ -13,13 +13,3 @@
       = current_user.name.strip
     -when 'r'
       = eval(between[2..-1])
-    -#-when 'R'         #how do I make it save variables between commands?
-      - commands = between[2..-1].split("$$")
-      - variables = {}
-      - for i in (0..commands.length-1)
-        -this_command = commands[i]
-        -if this_command  =~ /.*=.*/
-          - variable, command = commands[i].split("=")
-          - variables[variable] = eval(command)
-        -else
-          = eval(this_command + "(" + hash_to_string(variables) + ")")

@@ -11,6 +11,8 @@
         .big.level=get_my_quality(reward.quality_id).level
         - if reward.quality_type == 'status'
           .exp_bar= combo_progress_bar(status_progress_and_gained(reward), rounded: true, tiny: true)
+        - else
+          .exp_bar= combo_progress_bar(item_added_as_percentage(reward), rounded: true, tiny: true)
       -else
         There has been a problem.  Apologies.
 

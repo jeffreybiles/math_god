@@ -16,12 +16,25 @@ class ApplicationController < ActionController::Base
                 :percent_completed_and_gained, :minutes_since_last_tick,
                 :max_energy, :time_between_ticks, :status_progress_and_gained,
                 :owed_energy, :favor, :last_log, :last_log_status, :last_few_logs,
-                :hash_to_string
+                :item_added_as_percentage
 
-  def hash_to_string(hash)
-    string = ""
-    hash.each {|key, value| string << "#{key.strip}: #{value}," }
-    string[0..-2]
+  def item_added_as_percentage(reward)
+    items_added = reward.number_increased
+    total = get_my_quality(reward.quality_id).level
+    if total
+      if total > 0
+        if items_added > 0
+          [(total - items_added.abs)*100/total, items_added*100/total]
+        else
+          old_total = items_added.abs + total
+          [total*100/old_total, 0, (items_added.abs)*100/old_total]
+        end
+      else
+        [0, 0, items_added*100, 0]
+      end
+    else
+      [0, 100]
+    end
   end
 
   def percent_complete(quality_id)
