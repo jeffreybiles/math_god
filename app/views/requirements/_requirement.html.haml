@@ -1,9 +1,14 @@
 .req
-  = link_to requirement.quality.name, quality_path(requirement.quality.id) if requirement.quality
-  of level between
-  = requirement.min_level || 0
-  and
-  = requirement.max_level || "infinity"
-  ||
-  = link_to "Edit", edit_requirement_path(requirement.id)
-  = image_tag link_fu requirement.image, 'small'
+  -if requirement.quality
+    = link_to requirement.quality.name, quality_path(requirement.quality.id)
+    of level between
+    = requirement.min_level || 0
+    and
+    = requirement.max_level || "infinity"
+    ||
+    = link_to "Edit", edit_requirement_path(requirement.id)
+    = image_tag link_fu requirement.image, 'small'
+  -else
+    .red Requirement has no quality.  FIX THIS!!!!!
+    %br
+    = link_to "Edit", edit_requirement_path(requirement.id)
