@@ -1,15 +1,19 @@
 .reward
   -case reward.quality_type
     -when 'item', 'currency', 'status'
-      You gained
-      - if reward.number_increased > 0 then "gained" else "lost" end
-      = reward.number_increased
-      of
-      = reward.name
-      = image_tag link_fu reward.image, 'small'
-      .big.level=get_my_quality(reward.quality_id).level
-      - if reward.quality_type == 'status'
-        .exp_bar= combo_progress_bar(status_progress_and_gained(reward), rounded: true, tiny: true)
+      -if reward.number_increased && reward.quality
+        You gained
+        - if reward.number_increased > 0 then "gained" else "lost" end
+        = reward.number_increased
+        of
+        = reward.name
+        = image_tag link_fu reward.image, 'small'
+        .big.level=get_my_quality(reward.quality_id).level
+        - if reward.quality_type == 'status'
+          .exp_bar= combo_progress_bar(status_progress_and_gained(reward), rounded: true, tiny: true)
+      -else
+        There has been a problem.  Apologies.
+
     -when 'event'
       You are now at stage
       = reward.number_increased

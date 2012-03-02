@@ -131,7 +131,7 @@ class ApplicationController < ActionController::Base
           blocked = true if requirement.quality_type != 'cooldown'
         elsif !quality.level or (requirement.min_level && requirement.min_level > quality.level)
           requirements << "Requires #{requirement.name} #{requirement.min_level} or more.\r\n"
-          blocked = true if requirement.min_level > (quality.level || 1) + 5
+          blocked = true if requirement.min_level > (quality.level || 1) + 5 && requirement.quality.name != 'favor'
         elsif requirement.max_level && requirement.max_level < quality.level
           requirements << "Requires less than #{requirement.name} #{requirement.max_level}.\r\n"
           blocked = true if requirement.max_level < quality.level - 2  or requirement.requirement_type == 'event'

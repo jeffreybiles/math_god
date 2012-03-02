@@ -42,7 +42,7 @@ class Storylet < ActiveRecord::Base
     else
       q_type = quality.quality_type
       if q_type == 'item' || q_type == 'currency' || q_type == 'status' || q_type == 'cooldown'
-        quality.level= (quality.level || 0) + reward.number_increased
+        quality.level = (quality.level || 0) + reward.number_increased
         quality.level = 0 if quality.level < 0
       elsif q_type == 'event'
         quality.level = reward.number_increased
