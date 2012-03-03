@@ -24,7 +24,8 @@
     Favor:
     = favor.level if favor
     %br
-    -#= link_to (render 'my_qualities/sidebar_god', my_quality: current_user.my_qualities.joins(:quality).where('quality_type == ?', 'god').last),'/my_gods'
+    -#if pushing breaks something, it will be from this
+    = link_to (render 'my_qualities/sidebar_god', my_quality: most_recent_god),'/my_gods'
     = link_to "My stats", '/show_my_qualities'
     %br
     = link_to "Play!", "/storylets/#{last_log.storylet_id}/#{last_log_status}/#{log_code}" if last_log.storylet_id
