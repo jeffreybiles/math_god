@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
                 :percent_completed_and_gained, :minutes_since_last_tick,
                 :max_energy, :time_between_ticks, :status_progress_and_gained,
                 :owed_energy, :favor, :last_log, :last_log_status, :last_few_logs,
-                :item_added_as_percentage
+                :item_added_as_percentage, :currency
 
   def item_added_as_percentage(reward)
     items_added = reward.number_increased
@@ -192,6 +192,11 @@ class ApplicationController < ActionController::Base
 
   def favor
     this_quality = Quality.find_by_name('favor')
+    this_quality.my_qualities.find_or_create_by_user_id(current_user.id)
+  end
+
+  def currency
+    this_quality = Quality.find_by_name('teragon currency')
     this_quality.my_qualities.find_or_create_by_user_id(current_user.id)
   end
 

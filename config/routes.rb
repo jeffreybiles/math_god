@@ -12,7 +12,8 @@ TestStuff::Application.routes.draw do
   resources :my_qualities
   match "/show_my_qualities", to: 'my_qualities#show_mine'
   match "/show_my_qualities/:id", to: 'my_qualities#show_mine'
-
+  match "/my_gods", to: 'my_qualities#my_gods'
+  match "/my_gods/:id", to: 'my_qualities#my_gods'
   resources :rewards
 
   resources :requirements
@@ -26,61 +27,9 @@ TestStuff::Application.routes.draw do
 
   resources :qualities
 
-  resources :event_changes
-
-  resources :event_requirements
-  match '/event_requirements/:id/edit/quest', to: 'event_requirements#quest_form'
-  match '/event_requirements/:id/edit/choice', to: 'event_requirements#choice_form'
-
-  resources :happenings
-
-  resources :events
-
-  resources :item_requirements
-  match '/item_requirements/:id/edit/quest', to: 'item_requirements#quest_form'
-  match '/item_requirements/:id/edit/choice', to: 'item_requirements#choice_form'
-
-
-  resources :item_rewards
-
-  resources :owned_items
-
-  resources :items
-
-  resources :reputation_requirements
-  match '/reputation_requirements/:id/edit/quest', to: 'reputation_requirements#quest_form'
-  match '/reputation_requirements/:id/edit/choice', to: 'reputation_requirements#choice_form'
-
-
-  resources :blessing_requirements
-  match '/blessing_requirements/:id/edit/quest', to: 'blessing_requirements#quest_form'
-  match '/blessing_requirements/:id/edit/choice', to: 'blessing_requirements#choice_form'
-
-  resources :RequirementsController
-
-  resources :rep_gains
-
-  resources :consequences
-
-  resources :reputations
-
-  resources :factions
-
-  resources :locations
-  match '/locations', to: 'locations#index'
-
   resources :universes
 
   resources :images
-
-  resources :choices
-  match '/choices/:id/:blessing_id', to: 'choices#success'
-  match '/quests/:quest_id/new_choice', to: 'choices#new'
-
-  resources :quests
-  match '/quests/:id/info', to: 'quests#info'
-  match '/quests/:id/quest_choices', to: 'quests#quest_choices'
-  match '/quests/:id/choices', to: 'quests#choices'
 
   resources :users
   resources :user_sessions
@@ -88,11 +37,6 @@ TestStuff::Application.routes.draw do
   match '/display_second_step', to: 'users#display_second_step'
   match '/second_step', to: 'users#second_step'
 
-  resources :blessings
-  match '/blessings/:id/info', to: 'blessings#info'
-
-  resources :gods
-  match '/gods/:id/quests', to: 'gods#quests'
 
 
   root to: 'user_sessions#intro_page'

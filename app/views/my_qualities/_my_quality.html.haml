@@ -1,0 +1,13 @@
+-if my_quality.level > 0
+  .my_quality
+    -case quality.quality_type
+    -when 'god', 'faction'
+      .exp_bar= progress_bar(percent_complete(quality.id), color: 'orange')
+    -when 'status'
+      .exp_bar= progress_bar(my_quality.level * 2, color: 'pink')
+    -else
+
+    .title
+      = quality.name[0, 40] if quality
+    .really_big.center= my_quality.level
+    = image_tag link_fu quality.image if quality

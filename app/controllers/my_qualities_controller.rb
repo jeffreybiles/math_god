@@ -7,13 +7,22 @@ class MyQualitiesController < ApplicationController
     actions :index, :show, :edit, :new, :create, :destroy
   end
 
+  def my_gods
+    if params[:id]
+      @user = User.find(params[:id])
+    else
+      @user = current_user
+    end
+    @my_qualities = @user.my_qualities.joins(:quality).where('quality_type == ?', 'god')
+  end
+
   def show_mine
     if params[:id]
       @user = User.find(params[:id])
     else
       @user = current_user
     end
-    @my_qualities = MyQuality.find_all_by_user_id(@user.id)
+    @my_qualities = @user.my_qualities.joins(:quality).where('quality_type != ? AND quality_type != ? AND name != ?', 'god', 'currency', 'favor')
   end
 
   def update

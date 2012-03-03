@@ -20,6 +20,23 @@ $content-width: $total-width - $sidebar-width - 20px;
   border-radius: $radius;
 }
 
+.sidebar_god {
+  @include rounded;
+  border: 2px white solid;
+  position: relative;
+  color: white;
+
+  .exp_bar {
+    width: $sidebar-width - 30px;
+  }
+  .level {
+    position: absolute;
+    right: 8px;
+    bottom: 10px;
+  }
+
+}
+
 #container {
   width: $total-width;
   margin: auto;
@@ -33,6 +50,7 @@ body {background-color: #cff;}
   @include rounded();
   float: right;
   margin: auto;
+  margin-top: 10px;
 }
 
 header {
@@ -306,15 +324,13 @@ a {
 }
 
 #sidebar {
-  position: fixed;
-  top: 10px;
   float: left;
   width: $sidebar-width;
   border: 3px black solid;
-  height: 600px;
   background-color: black;
   color: white;
   @include rounded();
+  margin-top: 10px;
 }
 
 nav {
