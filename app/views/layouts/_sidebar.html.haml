@@ -24,7 +24,7 @@
     Favor:
     = favor.level if favor
     %br
-    = link_to (render 'my_qualities/sidebar_god', my_quality: current_user.my_qualities.joins(:quality).where('quality_type == ?', 'god').last),
+    -#= link_to (render 'my_qualities/sidebar_god', my_quality: current_user.my_qualities.joins(:quality).where('quality_type == ?', 'god').last),
        '/my_gods'
     = link_to "My stats", '/show_my_qualities'
     %br
