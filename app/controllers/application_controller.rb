@@ -16,13 +16,22 @@ class ApplicationController < ActionController::Base
                 :percent_completed_and_gained, :minutes_since_last_tick,
                 :max_energy, :time_between_ticks, :status_progress_and_gained,
                 :owed_energy, :favor, :last_log, :last_log_status, :last_few_logs,
-                :item_added_as_percentage, :currency, :most_recent_god
+                :item_added_as_percentage, :currency, :my_gods, :all_my_gods
 
-  def most_recent_god
-    my_qualities = current_user.my_qualities
-    my_gods = my_qualities.map{|quality| return quality if quality.quality_type == 'god'}
-    my_gods.last
+  def my_gods(user = current_user)
+    all_my_gods = all_my_gods(user)
+    all_my_gods.last
+    #my_qualities = user.my_qualities
+    #my_qualities.map{|quality| return quality if quality.quality_type == 'god'}.last
   end
+
+  def all_my_gods(user = current_user)
+    my_qualities = user.my_qualities
+    my_qualities_array = []
+    my_qualities.map{|quality| my_qualities_array << quality if quality.quality_type == 'god'}
+    my_qualities_array
+  end
+
 
   def item_added_as_percentage(reward)
     items_added = reward.number_increased

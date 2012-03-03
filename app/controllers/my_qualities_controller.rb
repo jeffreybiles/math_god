@@ -13,7 +13,7 @@ class MyQualitiesController < ApplicationController
     else
       @user = current_user
     end
-    @my_qualities = @user.my_qualities.joins(:quality).where('quality_type == ?', 'god')
+    @my_qualities = all_my_gods(@user)
   end
 
   def show_mine
