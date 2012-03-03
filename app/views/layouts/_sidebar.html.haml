@@ -7,7 +7,7 @@
     %br
 
     Energy:
-    = current_user.energy
+    = current_user.energy || max_energy
     = '/'
     = max_energy
     %br
@@ -20,6 +20,7 @@
     %br
     Currency:
     = currency.level || 0
+    %br
     Favor:
     = favor.level if favor
     %br
