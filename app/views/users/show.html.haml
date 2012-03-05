@@ -11,23 +11,19 @@
 %p
   %b Energy:
   = @user.energy
+-#
+-#%p
+-#  = @user.last_energy_tick
 
-%p
-  = @user.last_energy_tick
-
-%p
-  %b Favor:
-  = @user.favor
-
-%p
-  %b Universe:
-  = @user.universe.name if @user.universe
+-#%p
+-#  %b Universe:
+-#  = @user.universe.name if @user.universe
 
 
 
 
 
-= image_tag link_fu(@user.image)
+-#= image_tag link_fu(@user.image)
 
 = link_to 'Edit', edit_user_path(@user)
 |

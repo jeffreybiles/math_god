@@ -1,5 +1,10 @@
-%h2 Sign up
+%h1 Welcome!
 
+The gods are curious yet fickle.  They must have some way to keep track of you.  You'll be obliging, won't you?
+
+= render 'authentications/authentications'
+
+Or your email:
 = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
   = f.error_notification
 
