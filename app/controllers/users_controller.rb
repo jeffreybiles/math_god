@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
-    update_permissions(params)
+    @user.update_permissions(params)
     @user.update_attributes(params[:user])
     @user.offer_code= ''
     @user.save
@@ -39,14 +39,5 @@ class UsersController < ApplicationController
     redirect_to @user
   end
 
-  def update_permissions(params)
-    if params[:offer_code]
-      if params[:user][:offer_code] ==  ENV['admin_password']
-        @user.admin= true
-      elsif params[:user][:offer_code] == ENV['contributor_password']
-        @user.contributor= true
-      end
-    end
-  end
 
 end

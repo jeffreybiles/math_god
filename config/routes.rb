@@ -1,5 +1,8 @@
 TestStuff::Application.routes.draw do
 
+  devise_for :users, :controllers => { :registrations => "registrations" }
+  match '/welcome' => "user_sessions#create", :as => :user_root
+
   match '/unfinished_business', to: 'images#unfinished_business'
 
   resources :player_logs

@@ -10,19 +10,17 @@ class ApplicationController < ActionController::Base
     include ActionView::Helpers::TextHelper
   end
 
-  helper_method :current_user_session, :current_user, :link_fu,
-                :requirements, :get_my_quality, :get_or_create_my_quality,
-                :log_code, :percent_complete, :experience_earned,
-                :percent_completed_and_gained, :minutes_since_last_tick,
-                :max_energy, :time_between_ticks, :status_progress_and_gained,
-                :owed_energy, :favor, :last_log, :last_log_status, :last_few_logs,
-                :item_added_as_percentage, :currency, :my_gods, :all_my_gods
+  helper_method :link_fu, :requirements, :get_my_quality,
+                :get_or_create_my_quality, :log_code, :percent_complete,
+                :experience_earned, :percent_completed_and_gained,
+                :minutes_since_last_tick, :max_energy, :time_between_ticks,
+                :status_progress_and_gained, :owed_energy, :favor, :last_log,
+                :last_log_status, :last_few_logs, :item_added_as_percentage,
+                :currency, :my_gods, :all_my_gods #:current_user_session, :current_user
 
   def my_gods(user = current_user)
     all_my_gods = all_my_gods(user)
     all_my_gods.last
-    #my_qualities = user.my_qualities
-    #my_qualities.map{|quality| return quality if quality.quality_type == 'god'}.last
   end
 
   def all_my_gods(user = current_user)
@@ -215,14 +213,14 @@ class ApplicationController < ActionController::Base
     this_quality.my_qualities.find_or_create_by_user_id(current_user.id)
   end
 
-  def current_user
-    @current_user ||= current_user_session && current_user_session.user
-  end
-
-  protected
-
-    def current_user_session
-      @current_user_session ||= UserSession.find
-    end
+  #def current_user
+  #  @current_user ||= current_user_session && current_user_session.user
+  #end
+  #
+  #protected
+  #
+  #  def current_user_session
+  #    @current_user_session ||= UserSession.find
+  #  end
 
 end

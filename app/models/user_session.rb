@@ -1,5 +1,2 @@
-class UserSession < Authlogic::Session::Base
-  def to_key
-    [session_key]
-  end
+class UserSession < ActiveRecord::Base
 end

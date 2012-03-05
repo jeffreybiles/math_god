@@ -1,9 +1,9 @@
 #sidebar
-  -if current_user && (current_user.player? || current_user.admin?)
-    Hello,
-    = link_to current_user.name, user_path(current_user)
-    %br
-    = link_to "Sign out", '/signout'
+  -if user_signed_in?
+    Hello
+    = link_to current_user.name, current_user
+    = ". Not you?"
+    = link_to "Sign out", destroy_user_session_path, :method => :delete
     %br
 
     Energy:
@@ -18,18 +18,21 @@
       = owed_energy
       more energy when you play your next storylet.
     %br
+
     Currency:
     = currency.level || 0
     %br
     Favor:
     = favor.level if favor
     %br
-    -#if pushing breaks something, it will be from this
+
     = link_to (render 'my_qualities/sidebar_god', my_quality: my_gods),'/my_gods'
+
     = link_to "My stats", '/show_my_qualities'
     %br
-    = link_to "Play!", "/storylets/#{last_log.storylet_id}/#{last_log_status}/#{log_code}" if last_log.storylet_id
+    = link_to "Play!", "/storylets/#{last_log.storylet_id}/#{last_log_status}/#{log_code}" if last_log
     %br
+
     Previous storylets:
     - last_few_logs.each do |log|
       = render 'player_logs/previous_storylet_preview', storylet: log.storylet
@@ -37,7 +40,7 @@
   -else
     %h2 welcome!
     .button
-      =link_to "New Adventure", new_user_path
+      =link_to "New Adventure", new_user_registration_path
     %br
     .button
       =link_to "Sign in", new_user_session_path

@@ -14,7 +14,7 @@ class UserSessionsController < ApplicationController
     if @user_session.save
       redirect_to "/storylets/#{last_log.storylet_id}/#{last_log_status}/#{log_code}"
     else
-      flash[:notice] = "Didn't work a wink.'"
+      flash[:notice] = "The gods are not smiling upon your login.'"
       render :new
     end
   end

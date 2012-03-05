@@ -11,5 +11,9 @@
       -if current_user && (current_user.admin? || current_user.contributor?)
         = render 'layouts/contributor_toolbar'
       #content
+        -if notice
+          %p.notice= notice
+        -if alert
+          %p.alert= alert
         = yield
 

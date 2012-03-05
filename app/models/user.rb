@@ -1,9 +1,11 @@
 class User < ActiveRecord::Base
-  acts_as_authentic do |config|
-    config.crypto_provider = Authlogic::CryptoProviders::MD5
-    #Add more options here if needed
-  end
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
 
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :offer_code
 
   has_many :my_qualities, dependent: :destroy
   has_many :qualities, through: :my_qualities
@@ -16,4 +18,15 @@ class User < ActiveRecord::Base
   belongs_to :current_storylet, class_name: 'Storylet'
 
   validates_presence_of :name, :email
+
+  def update_permissions(params)
+    if params[:offer_code]
+      if params[:user][:offer_code] ==  ENV['admin_password']
+        @user.admin= true
+      elsif params[:user][:offer_code] == ENV['contributor_password']
+        @user.contributor= true
+      end
+    end
+  end
+
 end
