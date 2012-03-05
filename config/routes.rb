@@ -1,7 +1,11 @@
 TestStuff::Application.routes.draw do
 
+  resources :authentications
+
   devise_for :users, :controllers => { :registrations => "registrations" }
   match '/welcome' => "user_sessions#create", :as => :user_root
+  match '/auth/:provider/callback' => 'authentications#create'
+  match '/users/sign_in', to: 'authentications#new'
 
   match '/unfinished_business', to: 'images#unfinished_business'
 

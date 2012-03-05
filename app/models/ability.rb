@@ -6,37 +6,38 @@ class Ability
      if user.admin?
        can :manage, :all
      elsif user.player? or user.contributor?
-       can [:action, :success, :failure], Storylet
-       can :update, MyQuality do |this_quality|
-         this_quality.user_id == user.id
-       end
-       can :manage, User do |this_user|
-         this_user.id == user.id
-       end
-       can [:create, :second_step, :display_second_step], User
-       can [:create, :intro_page], UserSession
-       can :destroy, UserSession do |this_session|
-         this_session == current_user_session
-       end
-       can [:read, :current_player_log], PlayerLog do |log|
-         log.user_id == user.id
-       end
-       if user.contributor?
-         can :manage, Storylet
-         can :manage, Universe
-         can :manage, Quality
-         can :manage, Reward
-         can :manage, Requirement
-         can :manage, Link
-         can :manage, PictureUploader
-         can :manage, Image
-         can :read, MyQuality
-         can :read, PlayerLog
-         can :manage, PlayerLog do |log|
-           log.user_id == user.id
-         end
-         can :read, User
-       end
+       can :manage, :all
+       #can [:action, :success, :failure], Storylet
+       #can [:update, :show_mine, :m MyQuality do |this_quality|
+       #  this_quality.user_id == user.id
+       #end
+       #can :manage, User do |this_user|
+       #  this_user.id == user.id
+       #end
+       #can [:create, :second_step, :display_second_step], User
+       #can [:create, :intro_page], UserSession
+       #can :destroy, UserSession do |this_session|
+       #  this_session == current_user_session
+       #end
+       #can [:read, :current_player_log], PlayerLog do |log|
+       #  log.user_id == user.id
+       #end
+       #if user.contributor?
+       #  can :manage, Storylet
+       #  can :manage, Universe
+       #  can :manage, Quality
+       #  can :manage, Reward
+       #  can :manage, Requirement
+       #  can :manage, Link
+       #  can :manage, PictureUploader
+       #  can :manage, Image
+       #  can :read, MyQuality
+       #  can :read, PlayerLog
+       #  can :manage, PlayerLog do |log|
+       #    log.user_id == user.id
+       #  end
+       #  can :read, User
+       #end
      else
        can [:create, :second_step, :display_second_step], User
        can [:create, :intro_page], UserSession

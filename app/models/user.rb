@@ -19,14 +19,28 @@ class User < ActiveRecord::Base
 
   validates_presence_of :name, :email
 
+  has_many :authentications
+
   def update_permissions(params)
     if params[:offer_code]
-      if params[:user][:offer_code] ==  ENV['admin_password']
-        @user.admin= true
-      elsif params[:user][:offer_code] == ENV['contributor_password']
-        @user.contributor= true
+      if params[:offer_code] ==  ENV['admin_password']
+        self.admin= true
+      elsif params[:offer_code] == ENV['contributor_password']
+        self.contributor= true
       end
     end
+    self.player= true
+    self.save
+  end
+
+  def apply_omniauth(omniauth)
+    self.email = omniauth['info']['email'] unless email
+    self.name = omniauth['info']['name'] unless name
+    authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
+  end
+
+  def password_required?
+    (authentications.empty? || !password.blank?) && super
   end
 
 end

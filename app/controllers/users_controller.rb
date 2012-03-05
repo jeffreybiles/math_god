@@ -29,12 +29,13 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = User.find(params[:id]) || current_user
 
-    @user.update_permissions(params)
-    @user.update_attributes(params[:user])
+    sign_in @user, :bypass => true
+    @user.update_without_password(params[:user])
+    @user.update_permissions(params[:user])
     @user.offer_code= ''
-    @user.save
+    @user.save!
 
     redirect_to @user
   end
