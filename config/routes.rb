@@ -31,6 +31,7 @@ TestStuff::Application.routes.draw do
   match "/storylets/:id/action", to: 'storylets#action'
   match "/storylets/:id/failure/:created_at", to: 'storylets#failure'
   match "/storylets/:id/success/:created_at", to: 'storylets#success'
+  match "/travel/:id", to: 'storylets#travel'
 
   resources :qualities
 

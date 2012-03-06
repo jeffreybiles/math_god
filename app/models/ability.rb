@@ -7,7 +7,7 @@ class Ability
        can :manage, :all
      elsif user.player? or user.contributor?
        can [:special_storylets, :storylet_show], PlayerLog
-       can [:action, :success, :failure], Storylet
+       can [:action, :success, :failure, :travel], Storylet
        can [:update, :show_mine, :my_gods], MyQuality do |this_quality|
          this_quality.user_id == user.id
        end

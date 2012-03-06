@@ -133,6 +133,9 @@ class ApplicationController < ActionController::Base
   end
 
   def get_my_quality(id)
+    if id.class == 'String'
+      quality = Quality.find_by_name(id)
+    end
     if id.class == 'Quality'
       id = id.id
     end

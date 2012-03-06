@@ -5,6 +5,20 @@ class StoryletsController < ApplicationController
     actions :all
   end
 
+  def travel
+    @storylet = Storylet.find(params[:id])
+    change_energy_tick
+    per_turn_actions
+    if last_log && last_log.storylet.travelable_from && get_my_quality('can travel in teragon')
+       PlayerLog.create!(user_id: current_user.id, storylet_id: @storylet.id, success: true)
+       render 'storylets/success'
+    else
+      current_user.save
+      @storylet = Storylet.find(last_log.storylet_id)
+      render "storylets/#{last_log_status}"
+    end
+  end
+
   def change_energy_tick
     unless current_user.last_energy_tick
       current_user.last_energy_tick = 1.second.ago

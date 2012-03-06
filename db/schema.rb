@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120305155950) do
+ActiveRecord::Schema.define(:version => 20120306201427) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(:version => 20120305155950) do
     t.integer   "cooloff_time"
     t.text      "notes"
     t.boolean   "special"
+    t.boolean   "travelable_from",  :default => true
   end
 
   create_table "universes", :force => true do |t|
@@ -124,39 +125,39 @@ ActiveRecord::Schema.define(:version => 20120305155950) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                 :null => false
-    t.string   "encrypted_password"
-    t.string   "password_salt"
-    t.integer  "login_count",            :default => 0
-    t.integer  "failed_login_count",     :default => 0
-    t.datetime "last_request_at"
-    t.datetime "current_login_at"
-    t.datetime "last_login_at"
-    t.string   "current_login_ip"
-    t.string   "last_login_ip"
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "admin"
-    t.boolean  "contributor"
-    t.boolean  "player"
-    t.integer  "image_id"
-    t.integer  "current_universe_id"
-    t.string   "offer_code"
-    t.integer  "current_storylet_id"
-    t.integer  "energy"
-    t.integer  "favor"
-    t.datetime "last_energy_tick"
-    t.string   "reset_password_token"
-    t.string   "remember_token"
-    t.datetime "remember_created_at"
-    t.string   "authentication_token"
-    t.datetime "reset_password_sent_at"
-    t.integer  "sign_in_count",          :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.string    "email",                                 :null => false
+    t.string    "encrypted_password"
+    t.string    "password_salt"
+    t.integer   "login_count",            :default => 0
+    t.integer   "failed_login_count",     :default => 0
+    t.timestamp "last_request_at"
+    t.timestamp "current_login_at"
+    t.timestamp "last_login_at"
+    t.string    "current_login_ip"
+    t.string    "last_login_ip"
+    t.string    "name"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.boolean   "admin"
+    t.boolean   "contributor"
+    t.boolean   "player"
+    t.integer   "image_id"
+    t.integer   "current_universe_id"
+    t.string    "offer_code"
+    t.integer   "current_storylet_id"
+    t.integer   "energy"
+    t.integer   "favor"
+    t.timestamp "last_energy_tick"
+    t.string    "reset_password_token"
+    t.string    "remember_token"
+    t.timestamp "remember_created_at"
+    t.string    "authentication_token"
+    t.timestamp "reset_password_sent_at"
+    t.integer   "sign_in_count",          :default => 0
+    t.timestamp "current_sign_in_at"
+    t.timestamp "last_sign_in_at"
+    t.string    "current_sign_in_ip"
+    t.string    "last_sign_in_ip"
   end
 
 end

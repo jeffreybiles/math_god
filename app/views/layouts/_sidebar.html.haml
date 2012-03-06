@@ -33,7 +33,11 @@
     = link_to "Important Events", '/special_storylets'
     = link_to "Play!", "/storylets/#{last_log.storylet_id}/#{last_log_status}/#{log_code}" if last_log
     %br
-
+    Travel:
+    - if last_log && last_log.storylet.travelable_from && get_my_quality('can travel in teragon')
+      =link_to "Teragon", controller: "storylets", action: "travel", id: Storylet.find_by_title('Travel the Teragon Capital').id
+    - else
+      Teragon
     Previous storylets:
     - last_few_logs.each do |log|
       = render 'player_logs/previous_storylet_preview', storylet: log.storylet
