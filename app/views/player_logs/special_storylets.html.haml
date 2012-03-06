@@ -9,6 +9,6 @@ Important things you've done lately:
     %br
     = if log.success then "succeeded" else "failed" end
     -if storylet.has_challenge
-      .preview_text= storylet.main_text[0, 160] + '...'
+      .preview_text= storylet.main_text[0, 50] + '...'
     -else
-      .preview_text= storylet.success_text[0, 160] + '...'
+      .preview_text= storylet.success_text[0, 50] + '...'
