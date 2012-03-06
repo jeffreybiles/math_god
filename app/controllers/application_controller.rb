@@ -166,7 +166,7 @@ class ApplicationController < ActionController::Base
 
       elsif requirement.min_level
         requirements << "Requires #{requirement.min_level} with #{requirement.quality.name}.\r\n"
-        blocked = true if requirement.min_level > 3
+        blocked = true if requirement.min_level > 3 or requirement.quality_type == 'event'
       end
     end
     requirements << check_cooloff_time(storylet) if storylet.cooloff_time

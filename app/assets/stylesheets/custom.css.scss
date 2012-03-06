@@ -99,31 +99,6 @@ header {
   }
 }
 
-.log_no_challenge, .log_success, .log_failure, .log_main {
-  @include half-width;
-  overflow: auto;
-  .text {
-    float: left;
-  }
-
-  .title {
-    @include text-half-width;
-  }
-
-  img {
-    float: right;
-  }
-  border: orange solid 2px;
-}
-
-.log_success {
-  border-color: green;
-}
-
-.log_failure {
-  border-color: red;
-}
-
 .special_log_preview {
   border: 2px black solid;
 }
@@ -175,11 +150,12 @@ header {
   margin: 2px;
 }
 
-.success, .failure, .storylet, .storylets, .action, .quality, .requirement, .requirements, .reward, .rewards, .special_log {
+.success, .failure, .storylet, .storylets, .action, .quality, .requirement, .requirements, .reward, .rewards, .special_log, .log_no_challenge {
   width: $content-width - 40px;
 
   float: left;
   padding: 10px;
+
   color: black;
   @include rounded;
   min-height: 120px;
@@ -214,7 +190,7 @@ header {
   }
 }
 
-.success, .failure, .action {
+.success, .failure, .action, .special_log, .log_no_challenge{
   .text, .title {
     width: $content-width - 200px;
   }
@@ -223,6 +199,31 @@ header {
 textarea {
   width: 400px;
   height: 200px;
+}
+
+.log_success, .log_failure, .log_main {
+  @include half-width;
+  overflow: auto;
+  .text {
+    float: left;
+  }
+
+  .title, .text {
+    @include text-half-width;
+  }
+
+  img {
+    float: right;
+  }
+  border: orange solid 2px;
+}
+
+.log_success {
+  border-color: green;
+}
+
+.log_failure {
+  border-color: red;
 }
 
 .field {

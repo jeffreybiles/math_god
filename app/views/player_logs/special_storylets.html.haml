@@ -6,7 +6,8 @@ Important things you've done lately:
     .title= link_to log.title, "/storylet_show/#{log.id}"
     = link_to (image_tag link_fu storylet.preview_image), "/storylet_show/#{log.id}"
     = log.created_at
-    = log.success
+    %br
+    = if log.success then "succeeded" else "failed" end
     -if storylet.has_challenge
       .preview_text= storylet.main_text[0, 160] + '...'
     -else

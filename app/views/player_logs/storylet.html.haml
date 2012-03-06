@@ -2,25 +2,25 @@
   .special_log
     .title= @log.title
     = image_tag link_fu @storylet.preview_image
+    %br
     = @log.created_at
-    .line
-    .log_main
-      = @storylet.main_text
-      = image_tag link_fu @storylet.action_image
-    -if @log.success
-      .log_success
-        .text= @storylet.success_text
-        = image_tag link_fu @storylet.success_image
-    -else
-      .log_failure
-        .text= @storylet.failure_text
-        = image_tag link_fu @storylet.failure_image
+  .log_main.storylet
+    .text= render 'storylets/split_text', text: @storylet.main_text
+    = image_tag link_fu @storylet.action_image
+  -if @log.success
+    .log_success.storylet
+      .text= render 'storylets/split_text', text: @storylet.success_text
+      = image_tag link_fu @storylet.success_image
+  -else
+    .log_failure.storylet
+      .text= render 'storylets/split_text', text: @storylet.failure_text
+      = image_tag link_fu @storylet.failure_image
 -else
   .log_no_challenge
-    .title
-      =@log.title
-      = image_tag link_fu @storylet.preview_image
-      = @log.created_at
-      .text= @storylet.success_text
-      =image_tag link_fu @storylet.success_image
+    .title=@log.title
+    = image_tag link_fu @storylet.preview_image
+    %br
+    = @log.created_at
+    .text= render 'storylets/split_text', text: @storylet.success_text
+    =image_tag link_fu @storylet.success_image
     .clear
