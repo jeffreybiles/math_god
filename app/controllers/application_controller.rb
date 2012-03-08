@@ -165,7 +165,7 @@ class ApplicationController < ActionController::Base
         when 'faction', 'god'
           if storylet.has_challenge && requirement.min_level
             number_of_god_requirements += 1
-            chances += calculate_chances((quality.level || 0) - requirement.min_level)
+            chances += if quality then calculate_chances((quality.level) - requirement.min_level) else 0 - requirement.min_level end
           else
             unless within_range?(requirement, quality)
               requirements << requirements_statement(requirement)

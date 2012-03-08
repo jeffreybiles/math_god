@@ -1,8 +1,0 @@
-= simple_form_for @universe do |f|
-  =render 'layouts/errors', object: @universe
-
-  .field= f.input :name
-  .field= f.input :focus
-  -#.field= f.input :god_id, collection: God.all
-  .field= f.input :description, as: :text
-  .actions= f.submit 'Save'
