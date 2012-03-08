@@ -6,6 +6,14 @@
   .text= render 'storylets/split_text', text: requirements(storylet.id)[0]
 -if storylet.has_challenge
   .level
-    = storylet.god.name
-    lvl
-    = storylet.challenge_level
+    -if open
+      -if chances > 0.9
+        .green_text A sure thing
+      -elsif chances > 0.65
+        .green_text Pretty good odds
+      -elsif chances > 0.35
+        .yellow_text You've got a shot
+      -elsif chances > 0.2
+        .orange_text Long odds
+      -else
+        .red_text You're the snowball.  This is hell.

@@ -1,8 +1,14 @@
 class StoryletsController < ApplicationController
   load_and_authorize_resource
 
+
   make_resourceful do
-    actions :all
+    actions :show, :new, :create, :destroy, :update, :edit
+  end
+
+  def index
+    @search = Storylet.search(params[:search])
+    @storylets = @search.all
   end
 
   def travel

@@ -30,7 +30,8 @@ class MyQualitiesController < ApplicationController
 
     if params[:my_quality][:exp_to_level] != ''
       @storylet = Storylet.find(params[:my_quality][:current_storylet_id])
-      if params[:my_quality][:exp_to_level] == params[:my_quality][:exp_to_delevel]
+      #if params[:my_quality][:exp_to_level] == params[:my_quality][:exp_to_delevel]
+      if rand <= params[:my_quality][:exp_to_level].to_f
         redirect_to "/storylets/#{@storylet.id}/success/#{log_code}"
       else
         redirect_to "/storylets/#{@storylet.id}/failure/#{log_code}"

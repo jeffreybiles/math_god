@@ -2,6 +2,28 @@
 
 = link_to 'New Storylet', new_storylet_path
 
+= simple_form_for @search do |f|
+  .field
+    .unit
+      =f.label :title_contains
+      =f.text_field :title_contains, default: " "
+    .unit
+      =f.label :challenge_level_gte
+      =f.text_field :challenge_level_gte, default: 0
+    .unit
+      =f.label :cooloff_time_gte
+      =f.text_field :cooloff_time_gte, default: 0
+  .clear
+  =f.submit "Search"
+
+.clear
+Sort by
+= sort_link @search, :title
+\|
+= sort_link @search, :challenge_level
+\|
+= sort_link @search, :cooloff_time
+
 %table
   %tr
     %th Title

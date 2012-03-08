@@ -1,13 +1,14 @@
 -if requirements(storylet.id)[1]
 
 -elsif requirements(storylet.id)[0] == ''
-  %a(href="/storylets/#{storylet.id}/action")
+  - random_num = rand(20000)
+  %a(href="/storylets/#{storylet.id}/action" style="background: black;" )
     -if storylet.special
       .storylet.special
-        = render 'storylets/preview_contents', storylet: storylet, open: true
+        = render 'storylets/preview_contents', storylet: storylet, open: true, chances: requirements(storylet.id)[2]
     -else
       .storylet
-        = render 'storylets/preview_contents', storylet: storylet, open: true
+        = render 'storylets/preview_contents', storylet: storylet, open: true, chances: requirements(storylet.id)[2]
 
 -else
   -if storylet.special

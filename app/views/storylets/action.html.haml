@@ -5,6 +5,7 @@
   -if @storylet.has_challenge
     =form_for get_or_create_my_quality(@storylet.god_id) do |f|
       .field
-        = render 'challenges/challenge', challenge: find_challenge(@storylet.god.name, @storylet.challenge_level), f: f
+        = f.hidden_field :exp_to_level, value: requirements(@storylet.id)[2]
+        -#= render 'challenges/challenge', challenge: find_challenge(@storylet.god.name, @storylet.challenge_level), f: f
         = f.hidden_field :current_storylet_id, value: @storylet.id
         .unit.actions#challenge_submit= f.submit 'Whisper'

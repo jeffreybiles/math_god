@@ -35,7 +35,7 @@ class MyQuality < ActiveRecord::Base
 
   def add_experience(experience_to_add)
     unless self.exp_to_level
-      self.exp_to_level = 40
+      self.exp_to_level = 30
       self.level = 1
       self.exp_to_delevel = 0
     end
@@ -62,7 +62,7 @@ class MyQuality < ActiveRecord::Base
   end
 
   def experience_required
-    40 * (1.2 ** (self.level - 1))
+    30 * (1.25 ** (self.level - 1))
   end
 
   def experience_earned(challenge_level, reward = nil)

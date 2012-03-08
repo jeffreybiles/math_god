@@ -304,7 +304,7 @@ textarea {
 }
 
 .storylet.special {
-  background-color: #ffff90;
+  border-color: #dddd22;
 }
 
 .storylet.unavailable.special {
@@ -395,6 +395,26 @@ a {
   margin-right: 20px;
   text-align: center;
   margin-bottom: 10px;
+}
+
+.green_text {
+  color: green;
+}
+
+.red_text {
+  color: #990000;
+}
+
+.orange_text {
+  color: #995500;
+}
+
+.yellow_text {
+  color: #999900;
+}
+
+.grey_text {
+  color: #888888;
 }
 
 nav {
