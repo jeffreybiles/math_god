@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
                 :minutes_since_last_tick, :max_energy, :time_between_ticks,
                 :status_progress_and_gained, :owed_energy, :favor, :last_log,
                 :last_log_status, :last_few_logs, :item_added_as_percentage,
-                :currency, :my_gods, :all_my_gods, :color_scale #:current_user_session, :current_user
+                :currency, :my_gods, :all_my_gods #:current_user_session, :current_user
 
   def my_gods(user = current_user)
     all_my_gods = all_my_gods(user)
@@ -149,53 +149,11 @@ class ApplicationController < ActionController::Base
     current_user.my_qualities.find_or_create_by_quality_id(id)
   end
 
-  #def quality_requirements(storylet)
-  #  requirements = ""
-  #  blocked = false
-  #  storylet.requirements.each do |requirement|
-  #    quality = get_my_quality(requirement.quality_id)
-  #    if quality
-  #      if requirement.max_level == 0
-  #        requirements << "You have the quality #{requirement.name}.\r\n"
-  #        blocked = true if requirement.quality_type != 'cooldown'
-  #      elsif !quality.level or (requirement.min_level && requirement.min_level > quality.level)
-  #        requirements << "Requires #{requirement.name} #{requirement.min_level} or more.\r\n"
-  #        blocked = true if requirement.min_level > (quality.level || 1) + 5 && requirement.quality.name != 'favor'
-  #        blocked = true if requirement.quality_type == 'event'
-  #      elsif requirement.max_level && requirement.max_level < quality.level
-  #        requirements << "Requires less than #{requirement.name} #{requirement.max_level}.\r\n"
-  #        blocked = true if requirement.max_level < quality.level - 2  or requirement.quality_type == 'event'
-  #      end
-  #
-  #    elsif requirement.min_level
-  #      requirements << "Requires #{requirement.min_level} with #{requirement.quality.name}.\r\n"
-  #      blocked = true if requirement.min_level > 3 or requirement.quality_type == 'event'
-  #    end
-  #  end
-  #  requirements << check_cooloff_time(storylet) if storylet.cooloff_time
-  #  [requirements, blocked]
-  #end
-
-  def color_scale(percent)
-    return 'white' if percent == 0
-    green1 = '88'.hex
-    green2 = 'ff'.hex
-    green3 = '77'.hex
-    red1 = 'ff'.hex
-    red2 = '33'.hex
-    red3 = '33'.hex
-    non_percent = 1 - percent
-    mid1 = green1*percent + red1*non_percent
-    mid2 = green2*percent + red2*non_percent
-    mid3 = green3*percent + red3*non_percent
-    mid1.to_i.to_s(16) + mid2.to_i.to_s(16) + mid3.to_i.to_s(16)
-  end
-
   def quality_requirements(storylet)
     requirements = ""
     blocked = false
     number_of_god_requirements = 0
-    difference = 0
+    chances = 0
     storylet.requirements.each do |requirement|
       quality = get_my_quality(requirement.quality_id)
       if requirement.max_level == 0 && quality
@@ -207,7 +165,7 @@ class ApplicationController < ActionController::Base
         when 'faction', 'god'
           if storylet.has_challenge && requirement.min_level
             number_of_god_requirements += 1
-            difference += (quality.level || 0) - requirement.min_level
+            chances += calculate_chances((quality.level || 0) - requirement.min_level)
           else
             unless within_range?(requirement, quality)
               requirements << requirements_statement(requirement)
@@ -225,8 +183,7 @@ class ApplicationController < ActionController::Base
 
     end
     requirements << check_cooloff_time(storylet) if storylet.cooloff_time
-    average_difference = difference/number_of_god_requirements if number_of_god_requirements > 0
-    chances = calculate_chances(average_difference)
+    chances = chances/number_of_god_requirements if number_of_god_requirements > 0
     [requirements, blocked, chances]
   end
 
