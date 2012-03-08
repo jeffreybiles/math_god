@@ -16,7 +16,14 @@ class ApplicationController < ActionController::Base
                 :minutes_since_last_tick, :max_energy, :time_between_ticks,
                 :status_progress_and_gained, :owed_energy, :favor, :last_log,
                 :last_log_status, :last_few_logs, :item_added_as_percentage,
-                :currency, :my_gods, :all_my_gods #:current_user_session, :current_user
+                :currency, :my_gods, :all_my_gods, :my_stats, :status_progress #:current_user_session, :current_user
+
+  def my_stats(user = current_user)
+    my_qualities = user.my_qualities
+    my_qualities_array = []
+    my_qualities.map{|quality| my_qualities_array << quality if quality.quality_type == 'status'}
+    my_qualities_array
+  end
 
   def my_gods(user = current_user)
     all_my_gods = all_my_gods(user)
@@ -70,7 +77,7 @@ class ApplicationController < ActionController::Base
   end
 
   def max_energy
-    20
+    30
   end
 
   def status_progress_and_gained(reward)
@@ -88,7 +95,7 @@ class ApplicationController < ActionController::Base
   def status_progress(my_quality)
     max_level = 50
     current_amount = my_quality.level
-    current_amount/max_level
+    current_amount*100/max_level
   end
 
   def percent_completed_and_gained(reward)

@@ -1,0 +1,11 @@
+-if my_quality
+  .sidebar_status
+    .center
+      - if my_quality.level >= 30
+        .red_text= my_quality.quality.name
+      -else
+        = my_quality.quality.name
+    .exp_bar= progress_bar(status_progress(my_quality),
+        color: if my_quality.level <= 30 then 'purple' else 'pink' end, tiny: true)
+
+  .clear

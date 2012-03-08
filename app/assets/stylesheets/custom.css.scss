@@ -37,6 +37,17 @@ $content-width: $total-width - $sidebar-width - 20px;
 
 }
 
+.sidebar_status {
+  border: 1px grey solid;
+  color: white;
+  margin: 0px;
+  padding: 0px;
+
+  .exp_bar {
+    width: $sidebar-width - 2px;
+  }
+}
+
 #container {
   width: $total-width;
   margin: auto;

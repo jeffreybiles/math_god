@@ -35,9 +35,11 @@
     %br
     - if last_log && last_log.storylet.travelable_from && get_my_quality('can travel in teragon')
       =link_to "Travel", controller: "storylets", action: "travel", id: Storylet.find_by_title('Travel the Teragon Capital').id
-      %br
     - else
       .grey_text Travel
+    %br
+    - my_stats.each do |my_quality|
+      = render 'my_qualities/sidebar_stat', my_quality: my_quality
     Previous storylets:
     - last_few_logs.each do |log|
       = render 'player_logs/previous_storylet_preview', storylet: log.storylet
