@@ -114,7 +114,7 @@ class ApplicationController < ActionController::Base
         [percentize(previous_experience), percentize(current_experience - previous_experience)]
       end
     else
-      [percentize(current_experience), 0, percentize(current_experience - previous_experience).abs]
+      [percentize(current_experience), 0, percentize(current_experience - previous_experience)]
     end
 
   end
