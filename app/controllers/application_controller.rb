@@ -108,7 +108,11 @@ class ApplicationController < ActionController::Base
     current_experience = my_quality.exp_to_delevel / exp_for_level
     previous_experience = (my_quality.exp_to_delevel - experience_earned(reward))/exp_for_level
     if current_experience >= previous_experience
-      [percentize(previous_experience), percentize(current_experience - previous_experience)]
+      if current_experience > 1
+        [100]
+      else
+        [percentize(previous_experience), percentize(current_experience - previous_experience)]
+      end
     else
       [percentize(current_experience), 0, percentize(current_experience - previous_experience).abs]
     end
