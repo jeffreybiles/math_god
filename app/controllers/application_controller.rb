@@ -86,7 +86,11 @@ class ApplicationController < ActionController::Base
     current_amount = my_quality.level
     previous_amount = current_amount - reward.number_increased
     if current_amount > previous_amount
-      [previous_amount*100/max_level, reward.number_increased*100/max_level]
+      if current_amount > max_level
+        [100]
+      else
+        [previous_amount*100/max_level, reward.number_increased*100/max_level]
+      end
     else
       [current_amount*100/max_level, 0, reward.number_increased.abs*100/max_level]
     end
@@ -103,12 +107,20 @@ class ApplicationController < ActionController::Base
     exp_for_level = my_quality.exp_to_delevel + my_quality.exp_to_level
     current_experience = my_quality.exp_to_delevel / exp_for_level
     previous_experience = (my_quality.exp_to_delevel - experience_earned(reward))/exp_for_level
-    if current_experience > previous_experience
-      [previous_experience * 100, (current_experience - previous_experience) * 100]
+    if current_experience >= previous_experience
+      [percentize(previous_experience), percentize(current_experience - previous_experience)]
     else
-      [current_experience*100, 0, (current_experience - previous_experience).abs * 100]
+      [percentize(current_experience), 0, percentize(current_experience - previous_experience).abs]
     end
 
+  end
+
+  def percentize(percent)
+    if percent > 1
+      100
+    else
+      percent * 100
+    end
   end
 
   def experience_earned(reward)
