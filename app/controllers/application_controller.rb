@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
                 :minutes_since_last_tick, :max_energy, :time_between_ticks,
                 :status_progress_and_gained, :owed_energy, :favor, :last_log,
                 :last_log_status, :last_few_logs, :item_added_as_percentage,
-                :currency, :my_gods, :all_my_gods, :my_stats, :status_progress #:current_user_session, :current_user
+                :currency, :all_my_gods, :my_stats, :status_progress, :find_additamentum #:current_user_session, :current_user
 
   def my_stats(user = current_user)
     my_qualities = user.my_qualities
@@ -25,9 +25,10 @@ class ApplicationController < ActionController::Base
     my_qualities_array
   end
 
-  def my_gods(user = current_user)
-    all_my_gods = all_my_gods(user)
-    all_my_gods.last
+  def find_additamentum
+    additamentum = Quality.find_by_name('Additamentum')
+    my_additamentum  = MyQuality.find_or_create_by_user_id_and_quality_id(current_user.id, additamentum.id)
+    my_additamentum
   end
 
   def all_my_gods(user = current_user)
