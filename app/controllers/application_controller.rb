@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   def my_stats(user = current_user)
     my_qualities = user.my_qualities
     my_qualities_array = []
-    my_qualities.map{|quality| my_qualities_array << quality if quality.quality_type == 'status'}
+    my_qualities.map{|quality| my_qualities_array << quality if quality.quality && quality.quality_type == 'status'}
     my_qualities_array
   end
 
