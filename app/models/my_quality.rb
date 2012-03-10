@@ -52,6 +52,9 @@ class MyQuality < ActiveRecord::Base
       self.level -= 1
       self.exp_to_delevel = experience_required + self.exp_to_delevel
       self.exp_to_level = experience_required - self.exp_to_delevel
+      if self.exp_to_delevel <= 0
+        self.delevel
+      end
     end
   end
 
@@ -59,6 +62,9 @@ class MyQuality < ActiveRecord::Base
     self.level += 1
     self.exp_to_level = experience_required + self.exp_to_level
     self.exp_to_delevel = experience_required - self.exp_to_level
+    if self.exp_to_level <= 0
+      self.level_up
+    end
   end
 
   def experience_required

@@ -28,8 +28,7 @@ Sort by
   %tr
     %th Title
     %th Success text
-    %th God
-    %th Level
+    %th Challenge?
     %th Cooloff time
     %th Next
     %th Prev.
@@ -42,8 +41,7 @@ Sort by
     %tr
       %td= link_to storylet.title, storylet
       %td= storylet.success_text[0, 15]
-      %td= storylet.god.name[0,5] if storylet.god
-      %td= storylet.challenge_level
+      %td= if storylet.has_challenge then "yes" end
       %td= storylet.cooloff_time
       %td= storylet.next_storylets.count
       %td= storylet.previous_storylets.count
