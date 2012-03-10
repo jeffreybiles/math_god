@@ -205,17 +205,25 @@ class ApplicationController < ActionController::Base
       end
 
     end
-    requirements << check_cooloff_time(storylet) if storylet.cooloff_time
+    #requirements << check_cooloff_time(storylet) if storylet.cooloff_time
+    requirements << check_energy unless current_user.admin?
     chances = chances/number_of_god_requirements if number_of_god_requirements > 0
     [requirements, blocked, chances]
   end
 
   def calculate_chances(diff = nil)
     if diff
-      (1 + Math.erf((diff + 1)/7.071))/2
+      (1 + Math.erf((diff + 2)/7.071))/2
     else
       0
     end
+  end
+
+  def check_energy
+    unless current_user.energy > 0 || owed_energy > 1
+      return "You are out of energy.  Wait a bit, relax."
+    end
+    ''
   end
 
   def requirements_statement(requirement)
@@ -236,18 +244,18 @@ class ApplicationController < ActionController::Base
     status
   end
 
-  def check_cooloff_time(storylet)
-    last_time_played = current_user.player_logs.find_all_by_storylet_id(storylet.id).last
-    if last_time_played
-      time_since_played = (1.second.ago - last_time_played.created_at)/60
-      if time_since_played < storylet.cooloff_time
-        return "You must wait
-            #{help.pluralize((storylet.cooloff_time - time_since_played).round(1), "more minute")}
-            to play this storylet again.\r\n"
-      end
-    end
-    ""
-  end
+  #def check_cooloff_time(storylet)
+  #  last_time_played = current_user.player_logs.find_all_by_storylet_id(storylet.id).last
+  #  if last_time_played
+  #    time_since_played = (1.second.ago - last_time_played.created_at)/60
+  #    if time_since_played < storylet.cooloff_time
+  #      return "You must wait
+  #          #{help.pluralize((storylet.cooloff_time - time_since_played).round(1), "more minute")}
+  #          to play this storylet again.\r\n"
+  #    end
+  #  end
+  #  ""
+  #end
 
   def link_fu(link, size ='medium')
     default = 'http://mathgod.s3.amazonaws.com/uploads/image/picture/7/Mystery.jpg'
