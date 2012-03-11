@@ -16,7 +16,7 @@ gem 'simple_form'
 gem 'nested_form', git: 'https://github.com/ryanb/nested_form.git'
 gem 'carrierwave'
 gem 'fog'
-gem 'taps'
+
 gem 'css3-progress-bar-rails'
 gem 'make_resourceful'
 gem 'twitter-bootstrap-rails'
@@ -32,6 +32,7 @@ end
 
 group :development, :test do
   gem 'sqlite3'
+  gem 'taps'
 end
 # Gems used only for assets and not required
 # in production environments by default.
