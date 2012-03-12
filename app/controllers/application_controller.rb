@@ -221,8 +221,10 @@ class ApplicationController < ActionController::Base
   end
 
   def check_energy
-    unless current_user.energy > 0 || owed_energy > 1
-      return "You are out of energy.  Wait a bit, relax."
+    if current_user.energy
+      unless (current_user.energy > 0 || owed_energy > 1)
+        return "You are out of energy.  Wait a bit, relax."
+      end
     end
     ''
   end
