@@ -2,6 +2,21 @@
 
 = link_to 'New Image', new_image_path
 
+= simple_form_for @search do |f|
+  .field
+    .unit
+      =f.label :name_contains
+      =f.text_field :name_contains, default: " "
+  .clear
+  =f.submit "Search"
+
+.clear
+Sort by
+= sort_link @search, :name
+\|
+= sort_link @search, :uses_count
+
+
 %table
   %tr
     %th Name
@@ -15,7 +30,7 @@
     %tr
       %td= link_to image.name, image_path(image)
       %td= if image.picture? then "yes" else "no" end
-      %td= count_uses(image)
+      %td= image.uses_count   #count_uses(image)
       %td= link_to 'Show', image
       %td= link_to 'Edit', edit_image_path(image)
       %td= link_to 'Destroy', image, :confirm => 'Are you sure?', :method => :delete

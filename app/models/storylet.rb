@@ -8,10 +8,10 @@ class Storylet < ActiveRecord::Base
   accepts_nested_attributes_for :previous_links, allow_destroy: true
 
   has_many :qualities
-  belongs_to :preview_image, class_name: 'Image'
-  belongs_to :action_image, class_name: 'Image'
-  belongs_to :success_image, class_name: 'Image'
-  belongs_to :failure_image, class_name: 'Image'
+  belongs_to :preview_image, class_name: 'Image', counter_cache: :uses_count
+  belongs_to :action_image, class_name: 'Image', counter_cache: :uses_count
+  belongs_to :success_image, class_name: 'Image', counter_cache: :uses_count
+  belongs_to :failure_image, class_name: 'Image', counter_cache: :uses_count
   belongs_to :god, class_name: 'Quality'
 
   has_many :requirements, dependent: :destroy

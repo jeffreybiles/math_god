@@ -10,7 +10,7 @@ class Quality < ActiveRecord::Base
   has_many :effects, class_name: 'Reward'
   accepts_nested_attributes_for :effects
 
-  belongs_to :image
+  belongs_to :image, counter_cache: :uses_count
 
   def image_name
     image.try(:name)

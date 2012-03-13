@@ -2,7 +2,12 @@ class ImagesController < ApplicationController
   load_and_authorize_resource
 
   make_resourceful do
-    actions :all
+    actions :show, :new, :create, :destroy, :update, :edit
+  end
+
+  def index
+    @search = Image.search(params[:search])
+    @images = @search.all
   end
 
   def unfinished_business
