@@ -7,6 +7,7 @@
     .unit
       =f.label :name_contains
       =f.text_field :name_contains, default: " "
+      =f.hidden_field :uses_count_gte
   .clear
   =f.submit "Search"
 
@@ -23,14 +24,14 @@ Sort by
     %th Picture?
     %th How Many?
     %th
-    %th                                                                  ``
+    %th
     %th
 
   - @images.each do |image|
     %tr
       %td= link_to image.name, image_path(image)
       %td= if image.picture? then "yes" else "no" end
-      %td= image.uses_count   #count_uses(image)
+      %td= image.uses_count
       %td= link_to 'Show', image
       %td= link_to 'Edit', edit_image_path(image)
       %td= link_to 'Destroy', image, :confirm => 'Are you sure?', :method => :delete
