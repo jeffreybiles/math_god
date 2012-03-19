@@ -49,12 +49,19 @@ $content-width: $total-width - $sidebar-width - 20px;
 }
 
 #container {
-  width: $total-width;
+  max-width: $total-width;
   margin: auto;
 }
 
 body {background-color: #cff;}
 
+#intro {
+  width: $content-width;
+  background: #fff;
+  @include rounded();
+  margin: auto;
+  margin-top: 10px;
+}
 #content {
   width: $content-width;
   background: #fff;
@@ -355,7 +362,7 @@ a {
 
 .authentication {
   width: 130px;
-  float: left;
+  //float: left;
   background-color: #EEE;
   border: solid 1px #999;
   padding: 5px 10px;
@@ -382,7 +389,7 @@ a {
   }
 
   img {
-    float: left;
+    //float: left;
     margin-right: 10px;
   }
 
@@ -397,17 +404,22 @@ a {
 }
 
 .auth_provider img {
-  display: block;
+  //display: block;
+  clear: both;
 }
 
 .auth_provider {
-  float: left;
+  //float: left;
   text-decoration: none;
-  margin-right: 20px;
+  //margin-right: 20px;
   text-align: center;
   margin-bottom: 10px;
 }
 
+.info {
+    width: 500px;
+    margin: auto;
+}
 .green_text {
   color: #007000;
 }

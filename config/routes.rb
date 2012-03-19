@@ -42,8 +42,6 @@ TestStuff::Application.routes.draw do
   resources :users
   resources :user_sessions
   match '/signout', to: 'user_sessions#destroy'
-  match '/display_second_step', to: 'users#display_second_step'
-  match '/second_step', to: 'users#second_step'
 
 
 

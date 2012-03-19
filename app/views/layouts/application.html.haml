@@ -7,13 +7,16 @@
     = csrf_meta_tags
   %body
     #container
-      = render 'layouts/sidebar'
-      -if current_user && (current_user.admin? || current_user.contributor?)
-        = render 'layouts/contributor_toolbar'
-      #content
-        -if notice
-          %p.notice= notice
-        -if alert
-          %p.alert= alert
-        = yield
+      -if request.fullpath == '/'
+        #intro= yield
+      -else
+        = render 'layouts/sidebar'
+        -if current_user && (current_user.admin? || current_user.contributor?)
+          = render 'layouts/contributor_toolbar'
+        #content
+          -if notice
+            %p.notice= notice
+          -if alert
+            %p.alert= alert
+          = yield
 
